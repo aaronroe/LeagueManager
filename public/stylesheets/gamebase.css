@@ -18,9 +18,10 @@ body {
 .nav-text {
     float: left;
     padding: 18px;
-    font-size: 21px;
+    font-size: 19px;
 }
 
 .navbar {
     padding: 0 150px;
+    margin: 0px;
 }
