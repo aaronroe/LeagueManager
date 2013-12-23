@@ -25,3 +25,8 @@ body {
     padding: 0 150px;
     margin: 0px;
 }
+
+.view-tab {
+    border-color: #e7e7e7;
+    border: 1px solid transparent;
+}
