@@ -15,6 +15,11 @@ body {
     font-weight: bold;
 }
 
+.navbar-logo:hover {
+    color: #777;
+    text-decoration: none;
+}
+
 .nav-text {
     float: left;
     padding: 18px;
