@@ -49,9 +49,9 @@ playauthenticate.change_password.success=パスハードは正常に変更され
 playauthenticate.password.signup.error.passwords_not_same=パスワードが一致しません。
 playauthenticate.password.login.unknown_user_or_pw=不明なユーザー名かパスワードです。
 
-playauthenticate.password.verify_signup.subject=PlayAuthenticate: サインアップ完了
-playauthenticate.password.verify_email.subject=PlayAuthenticate: 電子メールアドレス確認
-playauthenticate.password.reset_email.subject=PlayAuthenticate: パスワードリセットの方法
+playauthenticate.password.verify_signup.subject=League Manager: サインアップ完了
+playauthenticate.password.verify_email.subject=League Manager: 電子メールアドレス確認
+playauthenticate.password.reset_email.subject=League Manager: パスワードリセットの方法
 
 # play-authenticate: Additional translations
 
@@ -91,7 +91,7 @@ playauthenticate.link.account.ok=OK
 # play-authenticate: Signup folder translations
 
 playauthenticate.verify.email.title=電子メールアドレスの確認
-playauthenticate.verify.email.requirement=PlayAuthentificateを利用する前に、まずは電子メールアドレスを確認する必要があります。
+playauthenticate.verify.email.requirement=League Managerを利用する前に、まずは電子メールアドレスを確認する必要があります。
 playauthenticate.verify.email.cta=登録されたアドレスにメールが送られます。アカウントを有効にするためにメール内のリンクをクリックしてください。
 
 playauthenticate.password.reset.title=パスワードのリセット
@@ -101,7 +101,7 @@ playauthenticate.password.forgot.title=パスワードを忘れた
 playauthenticate.password.forgot.cta=パスワードリセットの手順を送付する
 
 playauthenticate.oauth.access.denied.title=OAuthアクセスが未許可
-playauthenticate.oauth.access.denied.explanation=PlayAuthenticateをOAuthで使いたい場合は、接続を許可する必要があります。
+playauthenticate.oauth.access.denied.explanation=League ManagerをOAuthで使いたい場合は、接続を許可する必要があります。
 playauthenticate.oauth.access.denied.alternative=そのようにしたくない場合は、代わりに
 playauthenticate.oauth.access.denied.alternative.cta=ユーザー名とパスワードで登録することもできます。
 
@@ -136,8 +136,8 @@ playauthenticate.profile.session_endless=あなたのユーザーIDは {0} で�
 playauthenticate.profile.password_change=パスワードの変更／設定
 
 # play-authenticate - sample: Index page
-playauthenticate.index.title=Play Authenticate へようこそ！
-playauthenticate.index.intro=Play Authenticate サンプルアプリ
+playauthenticate.index.title=League Manager へようこそ！
+playauthenticate.index.intro=League Manager
 playauthenticate.index.intro_2=これは認証機能を持つシンプルなアプリケーションです。
 playauthenticate.index.intro_3=上にあるメインナビゲーションでサポートされた認証機能をお試しください。
 playauthenticate.index.heading=タイトル

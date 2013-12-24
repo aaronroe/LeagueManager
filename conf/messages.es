@@ -49,9 +49,9 @@ playauthenticate.change_password.success=La contraseña ha sido cambiada correct
 playauthenticate.password.signup.error.passwords_not_same=Las contraseñas no coinciden.
 playauthenticate.password.login.unknown_user_or_pw=Usuario o contraseña incorrectos.
 
-playauthenticate.password.verify_signup.subject=PlayAuthenticate: Complete su registro
-playauthenticate.password.verify_email.subject=PlayAuthenticate: Confirme su dirección de email
-playauthenticate.password.reset_email.subject=PlayAuthenticate: Cómo restablecer su contraseña
+playauthenticate.password.verify_signup.subject=League Manager: Complete su registro
+playauthenticate.password.verify_email.subject=League Manager: Confirme su dirección de email
+playauthenticate.password.reset_email.subject=League Manager: Cómo restablecer su contraseña
 
 # play-authenticate: Additional translations
 
@@ -135,8 +135,8 @@ playauthenticate.profile.session_endless=Su ID de usuario es {0}. Su sesión no 
 playauthenticate.profile.password_change=Cambie/establezca una contraseña para su cuenta
 
 # play-authenticate - sample: Index page
-playauthenticate.index.title=Bienvenido Play Authenticate
-playauthenticate.index.intro=Aplicación de ejemplo de Play Authenticate
+playauthenticate.index.title=Bienvenido League Manager
+playauthenticate.index.intro=League Manager
 playauthenticate.index.intro_2=Esto es una plantilla para una sencilla aplicación con autentificación y autorización
 playauthenticate.index.intro_3=Mire la barra de navegación superior para ver ejemplos sencillos incluyendo las características soportadas de autentificación.
 playauthenticate.index.heading=Cabecera
