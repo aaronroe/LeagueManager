@@ -31,7 +31,13 @@ public class Application extends Controller {
 	public static final String USER_ROLE = "user";
 	
 	public static Result index() {
-		return ok(index.render());
+        final User localUser = getLocalUser(session());
+        if (localUser == null) {
+            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
+        }
+        else {
+            return redirect(routes.Application.restricted());
+        }
 	}
 
 	public static User getLocalUser(final Session session) {

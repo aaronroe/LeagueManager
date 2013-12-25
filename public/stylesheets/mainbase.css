@@ -1,0 +1,22 @@
+@font-face {
+  font-family: FrizQuadrata;
+  src: url('../fonts/frquad.ttf');
+}
+
+html * {
+    font-family: "FrizQuadrata";
+}
+
+body {
+    background-color: #f8f8f8;
+}
+
+.login {
+    margin: 100px auto 0;
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
