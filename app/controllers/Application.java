@@ -41,7 +41,8 @@ public class Application extends Controller {
 	@Restrict(@Group(Application.USER_ROLE))
 	public static Result restricted() {
 		final User localUser = getLocalUser(session());
-		return ok(restricted.render(localUser));
+        return ok(overview.render("Counter Logic Gaming"));
+//		return ok(restricted.render(localUser));
 	}
 
 	@Restrict(@Group(Application.USER_ROLE))

@@ -47,4 +47,17 @@ public class Team extends Model {
 
         this.name = name;
     }
+
+    /**
+     * Creates an instance of Team and saves it to the db.
+     * @param ownerId The id corresponding to the owner's user id.
+     * @param name The name of the team.
+     * @return The team object.
+     */
+    public static Team create(Long ownerId, String name) {
+        Team team = new Team(User.find.ref(ownerId), name);
+        team.save();
+        return team;
+    }
+
 }
