@@ -1,4 +1,4 @@
-@(title: String, teamName: String, openTab: Integer = 0)(content: Html)
+@(title: String, teamName: String, logoName: String, openTab: Integer = 0)(content: Html)
 
 <!DOCTYPE html>
 
@@ -20,7 +20,7 @@
 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="nav-text"><img src="@routes.Assets.at("images/logos/clg.png")" alt=""/>@teamName</li>
+                        <li class="nav-text"><img src="@routes.Assets.at("images/logos/"+logoName)" alt=""/>@teamName</li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">

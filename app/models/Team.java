@@ -30,11 +30,9 @@ public class Team extends Model {
     public String name;
 
     /**
-     * Constructor for team that does not include an owner.
+     * The name of the logo icon.
      */
-    public Team(String name) {
-        this(null, name);
-    }
+    public String logoName;
 
     /**
      * Finder for team.
@@ -43,14 +41,18 @@ public class Team extends Model {
 
     /**
      * Constructor for team that includes an owner.
+     * @param owner The User that owns the team.
+     * @param name The name of the team.
+     * @param logoName The name of the logo that the team uses.
      */
-    public Team(User owner, String name) {
+    public Team(User owner, String name, String logoName) {
         // init owner.
         if(owner != null) {
             this.owner = owner;
         }
 
         this.name = name;
+        this.logoName = logoName;
     }
 
     /**
@@ -66,10 +68,11 @@ public class Team extends Model {
      * Creates an instance of Team and saves it to the db.
      * @param ownerId The id corresponding to the owner's user id.
      * @param name The name of the team.
+     * @param logoName The name of the logo that the team uses.
      * @return The team object.
      */
-    public static Team create(Long ownerId, String name) {
-        Team team = new Team(User.find.ref(ownerId), name);
+    public static Team create(Long ownerId, String name, String logoName) {
+        Team team = new Team(User.find.ref(ownerId), name, logoName);
         team.save();
         return team;
     }

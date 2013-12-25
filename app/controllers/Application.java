@@ -5,6 +5,7 @@ import java.util.Date;
 
 import models.Team;
 import models.User;
+import play.Play;
 import play.Routes;
 import play.data.Form;
 import play.mvc.*;
@@ -44,11 +45,11 @@ public class Application extends Controller {
 		final User localUser = getLocalUser(session());
         Team team = Team.findTeamOf(localUser);
         if (team == null) {
-            Team.create(localUser.id, "Team Solomid");
-            return ok(overview.render("Counter Logic Gaming"));
+            Team.create(localUser.id, "Team Solomid", "tsm.png");
+            return ok(overview.render("Counter Logic Gaming", "clg.png"));
         }
         else {
-            return ok(overview.render(team.name));
+            return ok(overview.render(team.name, team.logoName));
         }
 //		return ok(restricted.render(localUser));
 	}
