@@ -3,6 +3,7 @@ package controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import models.Team;
 import models.User;
 import play.Routes;
 import play.data.Form;
@@ -41,7 +42,14 @@ public class Application extends Controller {
 	@Restrict(@Group(Application.USER_ROLE))
 	public static Result restricted() {
 		final User localUser = getLocalUser(session());
-        return ok(overview.render("Counter Logic Gaming"));
+        Team team = Team.findTeamOf(localUser);
+        if (team == null) {
+            Team.create(localUser.id, "Team Solomid");
+            return ok(overview.render("Counter Logic Gaming"));
+        }
+        else {
+            return ok(overview.render(team.name));
+        }
 //		return ok(restricted.render(localUser));
 	}
 

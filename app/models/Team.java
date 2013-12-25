@@ -37,6 +37,11 @@ public class Team extends Model {
     }
 
     /**
+     * Finder for team.
+     */
+    public static Model.Finder<Long,Team> find = new Model.Finder<Long,Team>(Long.class, Team.class);
+
+    /**
      * Constructor for team that includes an owner.
      */
     public Team(User owner, String name) {
@@ -46,6 +51,15 @@ public class Team extends Model {
         }
 
         this.name = name;
+    }
+
+    /**
+     * Method to get a team from a user.
+     * @param user The user whose team we are looking up.
+     * @return The team of user
+     */
+    public static Team findTeamOf(User user) {
+        return find.where().eq("owner", user).findUnique();
     }
 
     /**
