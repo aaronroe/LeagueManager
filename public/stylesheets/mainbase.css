@@ -36,8 +36,6 @@ body {
 }
 
 .help-inline {
-    margin-top: 100px;
     color: #b94a48;
     display: block;
-    position: absolute;
 }
