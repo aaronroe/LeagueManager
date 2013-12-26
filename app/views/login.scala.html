@@ -4,7 +4,7 @@
 @import helper.twitterBootstrap._
 
 @mainbase("League Manager - Login") {
-<div class="auth">
+<div class="auth-container">
     <h1>League Manager</h1>
     <div class="span3">
         @* Display proprietary login form *@
@@ -24,7 +24,7 @@
         '_label -> Messages("playauthenticate.login.password.placeholder")
         )
 
-        <input type="submit" value="Login" class="btn btn-primary"><br/>
+        <input type="submit" value="Log in" class="btn btn-primary"><br/>
         <br/>
         <a href="javascript:void(0);" onclick="window.location.href = jsRoutes.controllers.Signup.forgotPassword($('#email').val() || null).absoluteURL();">@Messages("playauthenticate.login.forgot.password")</a>
         <br />
