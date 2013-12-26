@@ -11,8 +11,8 @@ body {
     background-color: #f8f8f8;
 }
 
-.login {
-    margin: 100px auto 0;
+.auth {
+    margin: 70px auto 0;
     width: 400px;
     padding: 20px;
     background: #fff;
@@ -32,7 +32,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .help-inline {
