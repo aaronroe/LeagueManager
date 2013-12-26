@@ -5,6 +5,8 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Game team entity.
@@ -13,7 +15,7 @@ import javax.persistence.OneToOne;
 public class Team extends Model {
 
     /**
-     * The owner of the team.
+     * The User that owns this team.
      */
     @OneToOne
     public User owner;
