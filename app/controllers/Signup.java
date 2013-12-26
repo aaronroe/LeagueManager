@@ -44,7 +44,9 @@ public class Signup extends Controller {
 
 	public static Result unverified() {
 		com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-		return ok(unverified.render());
+        flash(Application.FLASH_MESSAGE_KEY, "You're almost done! Please check your email to verify your account.");
+        return ok(signup.render(MyUsernamePasswordAuthProvider.SIGNUP_FORM));
+//		return ok(unverified.render());
 	}
 
 	private static final Form<MyIdentity> FORGOT_PASSWORD_FORM = form(MyIdentity.class);
