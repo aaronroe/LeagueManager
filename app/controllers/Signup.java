@@ -14,6 +14,7 @@ import providers.MyUsernamePasswordAuthUser;
 import views.html.account.signup.*;
 
 import com.feth.play.module.pa.PlayAuthenticate;
+import views.html.login;
 import views.html.signup;
 
 import static play.data.Form.form;
@@ -202,7 +203,9 @@ public class Signup extends Controller {
 		com.feth.play.module.pa.controllers.Authenticate.noCache(response());
 		final TokenAction ta = tokenIsValid(token, Type.EMAIL_VERIFICATION);
 		if (ta == null) {
-			return badRequest(no_token_or_invalid.render());
+            flash(Application.FLASH_ERROR_KEY, "The given token is expired or does not exist.");
+            return badRequest(login.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
+//			return badRequest(no_token_or_invalid.render());
 		}
 		final String email = ta.targetUser.email;
 		User.verify(ta.targetUser);
