@@ -14,6 +14,7 @@ import providers.MyUsernamePasswordAuthUser;
 import views.html.account.signup.*;
 
 import com.feth.play.module.pa.PlayAuthenticate;
+import views.html.signup;
 
 import static play.data.Form.form;
 
@@ -190,7 +191,9 @@ public class Signup extends Controller {
 
 	public static Result exists() {
 		com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-		return ok(exists.render());
+        flash(Application.FLASH_ERROR_KEY, "User already exists.");
+        return ok(signup.render(MyUsernamePasswordAuthProvider.SIGNUP_FORM));
+//		return ok(exists.render());
 	}
 
 	public static Result verify(final String token) {
