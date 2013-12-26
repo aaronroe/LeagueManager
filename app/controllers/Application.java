@@ -33,7 +33,8 @@ public class Application extends Controller {
 	public static Result index() {
         final User localUser = getLocalUser(session());
         if (localUser == null) {
-            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
+            return redirect(routes.Application.login());
+//            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
         }
         else {
             return redirect(routes.Application.restricted());

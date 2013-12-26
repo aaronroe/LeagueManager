@@ -10,8 +10,29 @@
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@routes.Application.jsRoutes" defer="defer"></script>
 </head>
 <body>
-@content
+<div class="container">
+    @if(flash.contains(Application.FLASH_ERROR_KEY)) {
+    <div class="alert alert-error">
+        @flash().get(Application.FLASH_ERROR_KEY)
+    </div>
+    }
+    @if(flash.contains(Application.FLASH_MESSAGE_KEY)) {
+    <div class="alert alert-success">
+        @flash().get(Application.FLASH_MESSAGE_KEY)
+    </div>
+    }
+    @content
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2013-2014 League Manager</p>
+        <small>Authentication by <a href="http://joscha.github.io/play-authenticate/" target="_blank">Play Authenticate</a> &middot; League of Legends by
+            <a href="http://www.riotgames.com/">Riot Games</a></p>
+    </footer>
+</div> <!-- /container -->
 </body>
 </html>
