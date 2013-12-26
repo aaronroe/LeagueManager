@@ -25,6 +25,19 @@ body {
     text-align: center;
 }
 
+.login-alert {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 25px;
+}
+
 .help-inline {
+    margin-top: 100px;
+    color: #b94a48;
     display: block;
+    position: absolute;
 }

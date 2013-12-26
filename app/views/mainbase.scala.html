@@ -15,15 +15,16 @@
 <body>
 <div class="container">
     @if(flash.contains(Application.FLASH_ERROR_KEY)) {
-    <div class="alert alert-error">
+    <div class="alert alert-danger login-alert col-md-9">
         @flash().get(Application.FLASH_ERROR_KEY)
     </div>
     }
     @if(flash.contains(Application.FLASH_MESSAGE_KEY)) {
-    <div class="alert alert-success">
+    <div class="alert alert-success login-alert">
         @flash().get(Application.FLASH_MESSAGE_KEY)
     </div>
     }
+
     @content
 
     <hr>
