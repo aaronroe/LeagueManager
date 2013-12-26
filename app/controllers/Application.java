@@ -37,7 +37,7 @@ public class Application extends Controller {
 //            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
         }
         else {
-            return redirect(routes.Application.restricted());
+            return redirect(routes.Application.overview());
         }
 	}
 
@@ -48,7 +48,7 @@ public class Application extends Controller {
 	}
 
 	@Restrict(@Group(Application.USER_ROLE))
-	public static Result restricted() {
+	public static Result overview() {
 		final User localUser = getLocalUser(session());
         Team team = Team.findTeamOf(localUser);
         if (team == null) {
