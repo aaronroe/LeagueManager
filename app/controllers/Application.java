@@ -107,7 +107,6 @@ public class Application extends Controller {
             // create the new team.
             InitialTeam formData = filledForm.get();
             Team teamFromForm = Team.create(localUser.id, formData.name, formData.logo);
-            teamFromForm.save();
 
             return redirect(routes.Application.overview());
         }

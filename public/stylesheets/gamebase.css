@@ -1,3 +1,6 @@
+/**
+ * Font declaration for the League-style font.
+ */
 @font-face {
   font-family: FrizQuadrata;
   src: url('../fonts/frquad.ttf');
@@ -7,6 +10,9 @@ html * {
     font-family: "FrizQuadrata";
 }
 
+/**
+ * Styles for the navbar at the top of the game.
+ */
 .navbar-logo {
     color: #777;
     float: left;
@@ -36,18 +42,24 @@ html * {
     border: 1px solid transparent;
 }
 
+/**
+ * Used for any errors that happen.
+ */
+.help-inline {
+    color: #b94a48;
+    display: block;
+}
+
+/**
+ * Game panel elements.
+ */
 .small-panel {
     margin: 1% 10% 0;
-    width: 400px;
+    width: 80%;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.help-inline {
-    color: #b94a48;
-    display: block;
 }
 
 /**
