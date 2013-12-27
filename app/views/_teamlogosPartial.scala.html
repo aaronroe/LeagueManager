@@ -1,0 +1,11 @@
+@(f: Form[_])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@inputRadioGroup(
+    f("logo"),
+    options = options("clg.png"->"Counterlogic Gaming","tsm.png"->"Team Solomid"),
+    '_label -> "Team Logo",
+    '_error -> f("logo").error.map(_.withMessage("select logo"))
+)

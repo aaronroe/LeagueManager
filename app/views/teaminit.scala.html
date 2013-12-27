@@ -14,16 +14,12 @@
             }
 
             @inputText(
-            initTeamForm("name"),
-            '_showConstraints -> false,
-            '_label -> "Team Name"
+                initTeamForm("name"),
+                '_showConstraints -> false,
+                '_label -> "Team Name"
             )
 
-            @inputPassword(
-            initTeamForm("logo"),
-            '_showConstraints -> false,
-            '_label -> "Team Logo"
-            )
+            @_teamlogosPartial(initTeamForm)
 
             <input type="submit" value="Continue" class="btn btn-primary"><br/>
         }
