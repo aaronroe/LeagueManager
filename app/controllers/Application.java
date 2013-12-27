@@ -56,7 +56,7 @@ public class Application extends Controller {
 		final User localUser = getLocalUser(session());
         Team team = Team.findTeamOf(localUser);
         if (team == null) {
-            return ok(teaminit.render(form(InitialTeam.class)));
+            return redirect(routes.Application.index());
         }
         else {
             return ok(overview.render(team.name, team.logoName));
