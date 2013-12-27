@@ -18,14 +18,17 @@
                 <a class="navbar-logo" href="@routes.Application.overview()">League Manager</a>
             </div>
 
+            @if(logoName != null && teamName != null) {
             <ul class="nav navbar-nav">
                 <li class="nav-text">
                     @if(logoName != null) {
                         <img src="@routes.Assets.at("images/logos/"+logoName)" alt=""/>
+                    } else {
+                        @teamName
                     }
-                    @teamName
                 </li>
             </ul>
+            }
 
             <ul class="nav navbar-nav pull-right">
                 <li><a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout"><button type="button" class="btn btn-default">Logout</button></a></li>
