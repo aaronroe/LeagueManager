@@ -138,7 +138,7 @@ public class Application extends Controller {
 
     /**
      * Performs the initialization of a team with a name and a logo.
-     * @return The result.
+     * @return The result of the team init form submission.
      */
     @Restrict(@Group(Application.USER_ROLE))
     public static Result doTeamInit() {
@@ -154,6 +154,31 @@ public class Application extends Controller {
 
             return redirect(routes.Application.overview());
         }
+    }
+
+    /**
+     * Gets the roster intialization view, where the user chooses the initial players.
+     * @return The roster initialization view. Redirect if the team does not exist or if the roster already exists.
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result rosterInit() {
+        final User localUser = getLocalUser(session());
+        Team team = Team.findTeamOf(localUser);
+        if (team == null) {
+            return redirect(routes.Application.index());
+        }
+        else {
+            return ok();
+        }
+    }
+
+    /**
+     * Performs the initialization of a roster.
+     * @return The result of the roster init form submission..
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result doRosterInit() {
+        return ok();
     }
 
     /**

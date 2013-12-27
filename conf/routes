@@ -15,6 +15,9 @@ POST    /login                      controllers.Application.doLogin
 GET     /teaminit                   controllers.Application.teamInit
 POST    /teaminit                   controllers.Application.doTeamInit
 
+GET     /rosterinit                 controllers.Application.rosterInit
+POST    /rosterinit                 controllers.Application.doRosterInit
+
 GET     /logout                     com.feth.play.module.pa.controllers.Authenticate.logout
 GET     /authenticate/:provider     com.feth.play.module.pa.controllers.Authenticate.authenticate(provider: String)
 
