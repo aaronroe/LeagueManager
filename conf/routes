@@ -12,7 +12,7 @@ GET     /profile                    controllers.Application.profile
 GET     /login                      controllers.Application.login
 POST    /login                      controllers.Application.doLogin
 
-GET     /teaminit                   controllers.Application.index
+GET     /teaminit                   controllers.Application.teamInit
 POST    /teaminit                   controllers.Application.doTeamInit
 
 GET     /logout                     com.feth.play.module.pa.controllers.Authenticate.logout
