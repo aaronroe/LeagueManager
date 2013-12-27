@@ -3,16 +3,13 @@ package controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import akka.io.TcpPipelineHandler;
 import models.Athlete;
 import models.Team;
 import models.User;
 import models.forms.InitialTeam;
-import play.Play;
 import play.Routes;
 import play.data.Form;
 import play.mvc.*;
-import play.mvc.Http.Response;
 import play.mvc.Http.Session;
 import play.mvc.Result;
 import providers.MyUsernamePasswordAuthProvider;
@@ -51,7 +48,8 @@ public class Application extends Controller {
                 return redirect(routes.Application.teamInit());
             }
             else {
-                return redirect(routes.Application.overview());
+                return redirect(routes.Application.rosterInit());
+//                return redirect(routes.Application.overview());
             }
         }
 	}
@@ -79,7 +77,7 @@ public class Application extends Controller {
             return redirect(routes.Application.index());
         }
         else {
-            return ok(overview.render(team.name, team.logoName));
+            return ok(overview.render(team.name, team.logo));
         }
 //		return ok(restricted.render(localUser));
 	}
@@ -154,12 +152,12 @@ public class Application extends Controller {
             Team teamFromForm = Team.create(localUser.id, formData.name, formData.logo);
 
             // initialize a pool of athletes now!
-            Athlete.create("HotShotGG", null);
-            Athlete.create("NyJacky", null);
-            Athlete.create("bigfatjiji", null);
-            Athlete.create("Faker-Senpai", null);
+            Athlete.create("HotShotGG");
+            Athlete.create("NyJacky");
+            Athlete.create("bigfatjiji");
+            Athlete.create("Faker-Senpai");
 
-            return redirect(routes.Application.overview());
+            return redirect(routes.Application.rosterInit());
         }
     }
 
@@ -175,7 +173,7 @@ public class Application extends Controller {
             return redirect(routes.Application.index());
         }
         else {
-            return ok();
+            return ok(rosterinit.render(Athlete.findAll(), team));
         }
     }
 

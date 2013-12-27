@@ -1,0 +1,15 @@
+@(athleteList: List[Athlete], localTeam: Team)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@gamebase("League Manager - Roster Creation", localTeam.name, localTeam.logo, 0, 0) {
+<div class="small-panel">
+    <h1>Recruit Solo-Queue Players</h1>
+    <ul>
+        @for(athlete <- athleteList) {
+        <li>@athlete.name</li>
+        }
+    </ul>
+</div>
+}

@@ -5,8 +5,6 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Game team entity.
@@ -34,7 +32,7 @@ public class Team extends Model {
     /**
      * The name of the logo icon.
      */
-    public String logoName;
+    public String logo;
 
     /**
      * Finder for team.
@@ -45,16 +43,16 @@ public class Team extends Model {
      * Constructor for team that includes an owner.
      * @param owner The User that owns the team.
      * @param name The name of the team.
-     * @param logoName The name of the logo that the team uses.
+     * @param logo The name of the logo that the team uses.
      */
-    public Team(User owner, String name, String logoName) {
+    public Team(User owner, String name, String logo) {
         // init owner.
         if(owner != null) {
             this.owner = owner;
         }
 
         this.name = name;
-        this.logoName = logoName;
+        this.logo = logo;
     }
 
     /**

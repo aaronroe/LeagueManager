@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 /**
  * Game Athlete entity.
@@ -46,6 +47,14 @@ public class Athlete extends Model {
     }
 
     /**
+     * Gets all the athletes in the database.
+     * @return A list of all the athletes.
+     */
+    public static List<Athlete> findAll() {
+        return find.all();
+    }
+
+    /**
      * Creates a new athlete.
      * @param name The name of the athlete.
      * @param teamId The id of the team that this athlete is a part of.
@@ -53,6 +62,17 @@ public class Athlete extends Model {
      */
     public static Athlete create(String name, Long teamId) {
         Athlete athlete = new Athlete(name, Team.find.ref(teamId));
+        athlete.save();
+        return athlete;
+    }
+
+    /**
+     * Creates a new athlete that does not belong to any team.
+     * @param name The name of the athlete.
+     * @return The new athlete.
+     */
+    public static Athlete create(String name) {
+        Athlete athlete = new Athlete(name, null);
         athlete.save();
         return athlete;
     }

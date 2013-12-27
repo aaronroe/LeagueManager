@@ -28,7 +28,7 @@ create table team (
   id                        bigint not null,
   owner_id                  bigint,
   name                      varchar(255),
-  logo_name                 varchar(255),
+  logo                      varchar(255),
   constraint pk_team primary key (id))
 ;
 
