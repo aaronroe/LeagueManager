@@ -6,7 +6,7 @@
 @gamebase("League Manager - Team Creation", "", null, 0, 0) {
     <div class="small-panel">
         <h1>Create a new team</h1>
-        @helper.form(routes.Application.doLogin) {
+        @helper.form(routes.Application.doTeamInit) {
             @if(initTeamForm.hasGlobalErrors) {
             <p class="error">
                 <span class="label label-important">@initTeamForm.globalError.message</span>

@@ -9,5 +9,6 @@
                         "tsm.png"->routes.Assets.at("images/logos/tsm.png").toString()
     ),
     '_label -> "Team Logo",
+    '_showConstraints -> false,
     '_error -> f("logo").error.map(_.withMessage("select logo"))
 )

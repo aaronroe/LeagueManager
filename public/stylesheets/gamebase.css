@@ -45,6 +45,10 @@ html * {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.help-inline {
+    color: #b94a48;
+    display: block;
+}
 
 /**
  * CSS for handling the logo radio box

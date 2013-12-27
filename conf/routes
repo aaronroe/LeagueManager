@@ -12,6 +12,9 @@ GET     /profile                    controllers.Application.profile
 GET     /login                      controllers.Application.login
 POST    /login                      controllers.Application.doLogin
 
+GET     /teaminit                   controllers.Application.index
+POST    /teaminit                   controllers.Application.doTeamInit
+
 GET     /logout                     com.feth.play.module.pa.controllers.Authenticate.logout
 GET     /authenticate/:provider     com.feth.play.module.pa.controllers.Authenticate.authenticate(provider: String)
 

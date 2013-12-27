@@ -41,7 +41,13 @@ public class Application extends Controller {
 //            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
         }
         else {
-            return ok(teaminit.render(form(InitialTeam.class)));
+            Team teamOfUsers = Team.findTeamOf(localUser);
+            if (teamOfUsers == null) {
+                return ok(teaminit.render(form(InitialTeam.class)));
+            }
+            else {
+                return redirect(routes.Application.overview());
+            }
         }
 	}
 
@@ -96,8 +102,14 @@ public class Application extends Controller {
         if (filledForm.hasErrors()) {
             return badRequest(teaminit.render(filledForm));
         } else {
-            // temporary render.
-            return ok(overview.render("Success", null));
+            final User localUser = getLocalUser(session());
+
+            // create the new team.
+            InitialTeam formData = filledForm.get();
+            Team teamFromForm = Team.create(localUser.id, formData.name, formData.logo);
+            teamFromForm.save();
+
+            return redirect(routes.Application.overview());
         }
     }
 
