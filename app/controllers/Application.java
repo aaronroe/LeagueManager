@@ -33,11 +33,11 @@ public class Application extends Controller {
 	public static Result index() {
         final User localUser = getLocalUser(session());
         if (localUser == null) {
-            return redirect(routes.Application.login());
+            return ok(login.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
 //            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
         }
         else {
-            return redirect(routes.Application.overview());
+            return ok(teaminit.render());
         }
 	}
 
@@ -52,8 +52,7 @@ public class Application extends Controller {
 		final User localUser = getLocalUser(session());
         Team team = Team.findTeamOf(localUser);
         if (team == null) {
-            Team.create(localUser.id, "Team Solomid", "tsm.png");
-            return ok(overview.render("Counter Logic Gaming", "clg.png"));
+            return ok(teaminit.render());
         }
         else {
             return ok(overview.render(team.name, team.logoName));
