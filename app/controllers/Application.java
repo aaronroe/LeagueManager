@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import akka.io.TcpPipelineHandler;
+import models.Athlete;
 import models.Team;
 import models.User;
 import models.forms.InitialTeam;
@@ -151,6 +152,12 @@ public class Application extends Controller {
             // create the new team.
             InitialTeam formData = filledForm.get();
             Team teamFromForm = Team.create(localUser.id, formData.name, formData.logo);
+
+            // initialize a pool of athletes now!
+            Athlete.create("HotShotGG", null);
+            Athlete.create("NyJacky", null);
+            Athlete.create("bigfatjiji", null);
+            Athlete.create("Faker-Senpai", null);
 
             return redirect(routes.Application.overview());
         }
