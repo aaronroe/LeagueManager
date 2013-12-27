@@ -1,4 +1,4 @@
-@(title: String, teamName: String, logoName: String, openTab: Integer = 0)(content: Html)
+@(title: String, teamName: String, logoName: String, numVisibleTabs: Integer, openTab: Integer)(content: Html)
 
 <!DOCTYPE html>
 
@@ -31,11 +31,21 @@
             <nav class="navbar navbar-default" role="navigation">
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="@("active ".when(openTab == 0))view-tab"><a href="#">Overview</a></li>
-                        <li class="@("active ".when(openTab == 1))view-tab"><a href="#">Management</a></li>
-                        <li class="@("active ".when(openTab == 2))view-tab"><a href="#">Schedule</a></li>
-                        <li class="@("active ".when(openTab == 3))view-tab"><a href="#">Roster</a></li>
-                        <li class="@("active ".when(openTab == 4))view-tab"><a href="#">Finances</a></li>
+                        @if(numVisibleTabs > 0) {
+                            <li class="@("active ".when(openTab == 0))view-tab"><a href="#">Overview</a></li>
+                        }
+                        @if(numVisibleTabs > 1) {
+                            <li class="@("active ".when(openTab == 1))view-tab"><a href="#">Management</a></li>
+                        }
+                        @if(numVisibleTabs > 2) {
+                            <li class="@("active ".when(openTab == 2))view-tab"><a href="#">Schedule</a></li>
+                        }
+                        @if(numVisibleTabs > 3) {
+                            <li class="@("active ".when(openTab == 3))view-tab"><a href="#">Roster</a></li>
+                        }
+                        @if(numVisibleTabs > 4) {
+                            <li class="@("active ".when(openTab == 4))view-tab"><a href="#">Finances</a></li>
+                        }
                     </ul>
                 </div>
             </nav>
