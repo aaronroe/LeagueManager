@@ -44,3 +44,19 @@ html * {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+
+/**
+ * CSS for handling the logo radio box
+ */
+.logo-set > input[type=radio]{
+  display:none;
+}
+
+input[type=radio] + img{
+  cursor:pointer;
+  border:2px solid #ffffff;
+}
+input[type=radio]:checked + img{
+  border:2px solid #3c763d;
+}
