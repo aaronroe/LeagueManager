@@ -3,9 +3,11 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-@inputRadioGroup(
+@logoRadioGroup(
     f("logo"),
-    options = options("clg.png"->"Counterlogic Gaming","tsm.png"->"Team Solomid"),
+    options = options("clg.png"->routes.Assets.at("images/logos/clg.png").toString(),
+                        "tsm.png"->routes.Assets.at("images/logos/tsm.png").toString()
+    ),
     '_label -> "Team Logo",
     '_error -> f("logo").error.map(_.withMessage("select logo"))
 )
