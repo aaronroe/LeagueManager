@@ -35,3 +35,12 @@ html * {
     border-color: #e7e7e7;
     border: 1px solid transparent;
 }
+
+.small-panel {
+    margin: 1% 10% 0;
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}

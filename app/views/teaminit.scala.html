@@ -1,9 +1,31 @@
-@()
+@(initTeamForm: Form[_])
+
+@import helper._
+@import helper.twitterBootstrap._
 
 @gamebase("League Manager - Team Creation", "", null, 0, 0) {
-<div class="panel panel-default">
-    <div class="panel-body">
-        Hello World!
+    <div class="small-panel">
+        <h1>Create a new team</h1>
+        @helper.form(routes.Application.doLogin) {
+            @if(initTeamForm.hasGlobalErrors) {
+            <p class="error">
+                <span class="label label-important">@initTeamForm.globalError.message</span>
+            </p>
+            }
+
+            @inputText(
+            initTeamForm("name"),
+            '_showConstraints -> false,
+            '_label -> "Team Name"
+            )
+
+            @inputPassword(
+            initTeamForm("logo"),
+            '_showConstraints -> false,
+            '_label -> "Team Logo"
+            )
+
+            <input type="submit" value="Continue" class="btn btn-primary"><br/>
+        }
     </div>
-</div>
 }

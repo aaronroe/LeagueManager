@@ -3,8 +3,10 @@ package controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import akka.io.TcpPipelineHandler;
 import models.Team;
 import models.User;
+import models.forms.InitialTeam;
 import play.Play;
 import play.Routes;
 import play.data.Form;
@@ -24,6 +26,8 @@ import com.feth.play.module.pa.PlayAuthenticate;
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthProvider;
 import com.feth.play.module.pa.user.AuthUser;
 
+import static play.data.Form.form;
+
 public class Application extends Controller {
 
 	public static final String FLASH_MESSAGE_KEY = "message";
@@ -37,7 +41,7 @@ public class Application extends Controller {
 //            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
         }
         else {
-            return ok(teaminit.render());
+            return ok(teaminit.render(form(InitialTeam.class)));
         }
 	}
 
@@ -52,7 +56,7 @@ public class Application extends Controller {
 		final User localUser = getLocalUser(session());
         Team team = Team.findTeamOf(localUser);
         if (team == null) {
-            return ok(teaminit.render());
+            return ok(teaminit.render(form(InitialTeam.class)));
         }
         else {
             return ok(overview.render(team.name, team.logoName));
@@ -82,6 +86,20 @@ public class Application extends Controller {
 			return UsernamePasswordAuthProvider.handleLogin(ctx());
 		}
 	}
+
+    /**
+     * Performs the initialization of a team with a name and a logo.
+     * @return The result.
+     */
+    public static Result doTeamInit() {
+        final Form<InitialTeam> filledForm = form(InitialTeam.class).bindFromRequest();
+        if (filledForm.hasErrors()) {
+            return badRequest(teaminit.render(filledForm));
+        } else {
+            // temporary render.
+            return ok(overview.render("Success", null));
+        }
+    }
 
 	public static Result signup() {
 		return ok(signup.render(MyUsernamePasswordAuthProvider.SIGNUP_FORM));
