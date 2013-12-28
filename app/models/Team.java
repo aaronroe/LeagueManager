@@ -13,12 +13,6 @@ import javax.persistence.OneToOne;
 public class Team extends Model {
 
     /**
-     * The User that owns this team.
-     */
-    @OneToOne
-    public User owner;
-
-    /**
      * Primary db key for team.
      */
     @Id
@@ -41,38 +35,31 @@ public class Team extends Model {
 
     /**
      * Constructor for team that includes an owner.
-     * @param owner The User that owns the team.
      * @param name The name of the team.
      * @param logo The name of the logo that the team uses.
      */
-    public Team(User owner, String name, String logo) {
-        // init owner.
-        if(owner != null) {
-            this.owner = owner;
-        }
-
+    public Team(String name, String logo) {
         this.name = name;
         this.logo = logo;
     }
 
     /**
-     * Method to get a team from a user.
-     * @param user The user whose team we are looking up.
-     * @return The team of user
+     * Method to get the game object for a particular user.
+     * @param user The user whose game we are looking up.
+     * @return The game belonging to user
      */
     public static Team findTeamOf(User user) {
-        return find.where().eq("owner", user).findUnique();
+        return Game.find.where().eq("owner", user).findUnique().userTeam;
     }
 
     /**
      * Creates an instance of Team and saves it to the db.
-     * @param ownerId The id corresponding to the owner's user id.
      * @param name The name of the team.
-     * @param logoName The name of the logo that the team uses.
+     * @param logo The filename of the logo that the team uses.
      * @return The team object.
      */
-    public static Team create(Long ownerId, String name, String logoName) {
-        Team team = new Team(User.find.ref(ownerId), name, logoName);
+    public static Team create(String name, String logo) {
+        Team team = new Team(name, logo);
         team.save();
         return team;
     }

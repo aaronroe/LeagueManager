@@ -10,6 +10,13 @@ create table athlete (
   constraint pk_athlete primary key (id))
 ;
 
+create table game (
+  id                        bigint not null,
+  owner_id                  bigint,
+  user_team_id              bigint,
+  constraint pk_game primary key (id))
+;
+
 create table linked_account (
   id                        bigint not null,
   user_id                   bigint,
@@ -26,7 +33,6 @@ create table security_role (
 
 create table team (
   id                        bigint not null,
-  owner_id                  bigint,
   name                      varchar(255),
   logo                      varchar(255),
   constraint pk_team primary key (id))
@@ -76,6 +82,8 @@ create table users_user_permission (
 ;
 create sequence athlete_seq;
 
+create sequence game_seq;
+
 create sequence linked_account_seq;
 
 create sequence security_role_seq;
@@ -90,12 +98,14 @@ create sequence user_permission_seq;
 
 alter table athlete add constraint fk_athlete_team_1 foreign key (team_id) references team (id) on delete restrict on update restrict;
 create index ix_athlete_team_1 on athlete (team_id);
-alter table linked_account add constraint fk_linked_account_user_2 foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_linked_account_user_2 on linked_account (user_id);
-alter table team add constraint fk_team_owner_3 foreign key (owner_id) references users (id) on delete restrict on update restrict;
-create index ix_team_owner_3 on team (owner_id);
-alter table token_action add constraint fk_token_action_targetUser_4 foreign key (target_user_id) references users (id) on delete restrict on update restrict;
-create index ix_token_action_targetUser_4 on token_action (target_user_id);
+alter table game add constraint fk_game_owner_2 foreign key (owner_id) references users (id) on delete restrict on update restrict;
+create index ix_game_owner_2 on game (owner_id);
+alter table game add constraint fk_game_userTeam_3 foreign key (user_team_id) references team (id) on delete restrict on update restrict;
+create index ix_game_userTeam_3 on game (user_team_id);
+alter table linked_account add constraint fk_linked_account_user_4 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_linked_account_user_4 on linked_account (user_id);
+alter table token_action add constraint fk_token_action_targetUser_5 foreign key (target_user_id) references users (id) on delete restrict on update restrict;
+create index ix_token_action_targetUser_5 on token_action (target_user_id);
 
 
 
@@ -112,6 +122,8 @@ alter table users_user_permission add constraint fk_users_user_permission_user_0
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists athlete;
+
+drop table if exists game;
 
 drop table if exists linked_account;
 
@@ -132,6 +144,8 @@ drop table if exists user_permission;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists athlete_seq;
+
+drop sequence if exists game_seq;
 
 drop sequence if exists linked_account_seq;
 

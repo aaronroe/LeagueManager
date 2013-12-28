@@ -175,6 +175,10 @@ public class User extends Model implements Subject {
 		user.save();
 		user.saveManyToManyAssociations("roles");
 		// user.saveManyToManyAssociations("permissions");
+
+        // Initialize a Game object for this new user.
+        Game.create(user.id);
+
 		return user;
 	}
 

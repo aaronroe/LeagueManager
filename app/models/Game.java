@@ -2,10 +2,7 @@ package models;
 
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -21,10 +18,10 @@ public class Game extends Model {
     public User owner;
 
     /**
-     * List of all athletes that exist in this game.
+     * The user-controlled team in this game.
      */
-    @OneToMany
-    public List<Athlete> athleteList;
+    @OneToOne
+    public Team userTeam;
 
     /**
      * Primary db key for game.
@@ -35,7 +32,7 @@ public class Game extends Model {
     /**
      * Finder for team.
      */
-    public static Model.Finder<Long,Team> find = new Model.Finder<Long,Team>(Long.class, Team.class);
+    public static Model.Finder<Long,Game> find = new Model.Finder<Long,Game>(Long.class, Game.class);
 
     /**
      * Constructor for game.
@@ -43,6 +40,15 @@ public class Game extends Model {
      */
     public Game(User owner) {
         this.owner = owner;
+    }
+
+    /**
+     * Method to get the game object for a particular user.
+     * @param user The user whose game we are looking up.
+     * @return The game belonging to user
+     */
+    public static Game findGameOf(User user) {
+        return find.where().eq("owner", user).findUnique();
     }
 
     /**
@@ -54,6 +60,20 @@ public class Game extends Model {
         Game game = new Game(User.find.ref(ownerId));
         game.save();
         return game;
+    }
+
+    /**
+     * Creates a team for the user in this game, and saves appropriately.
+     * @param name The name of the team.
+     * @param logo The filename of the logo to use.
+     * @return The team created.
+     */
+    public Team createUserTeam(String name, String logo) {
+        Team userTeam = Team.create(name, logo);
+        this.userTeam = userTeam;
+        this.save();
+
+        return userTeam;
     }
 
 }

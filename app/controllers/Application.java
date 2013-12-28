@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import models.Athlete;
+import models.Game;
 import models.Team;
 import models.User;
 import models.forms.InitialTeam;
@@ -40,7 +41,6 @@ public class Application extends Controller {
         final User localUser = getLocalUser(session());
         if (localUser == null) {
             return redirect(routes.Application.login());
-//            return ok(mainlogin.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
         }
         else {
             Team teamOfUsers = Team.findTeamOf(localUser);
@@ -49,7 +49,6 @@ public class Application extends Controller {
             }
             else {
                 return redirect(routes.Application.rosterInit());
-//                return redirect(routes.Application.overview());
             }
         }
 	}
@@ -79,7 +78,6 @@ public class Application extends Controller {
         else {
             return ok(overview.render(team.name, team.logo));
         }
-//		return ok(restricted.render(localUser));
 	}
 
 	@Restrict(@Group(Application.USER_ROLE))
@@ -145,11 +143,13 @@ public class Application extends Controller {
         if (filledForm.hasErrors()) {
             return badRequest(teaminit.render(filledForm));
         } else {
+            // get the local user and his/her game.
             final User localUser = getLocalUser(session());
+            Game localGame = Game.findGameOf(localUser);
 
             // create the new team.
             InitialTeam formData = filledForm.get();
-            Team teamFromForm = Team.create(localUser.id, formData.name, formData.logo);
+            Team teamFromForm = localGame.createUserTeam(formData.name, formData.logo);
 
             // initialize a pool of athletes now!
             Athlete.create("HotShotGG");
@@ -213,8 +213,7 @@ public class Application extends Controller {
             return badRequest(signup.render(filledForm));
         } else {
             // Everything was filled
-            // do something with your part of the form before handling the user
-            // signup
+            // let play-authenticate handle signup.
             return UsernamePasswordAuthProvider.handleSignup(ctx());
         }
     }
