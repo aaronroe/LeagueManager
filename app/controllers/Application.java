@@ -152,10 +152,10 @@ public class Application extends Controller {
             Team teamFromForm = localGame.createUserTeam(formData.name, formData.logo);
 
             // initialize a pool of athletes now!
-            Athlete.create("HotShotGG");
-            Athlete.create("NyJacky");
-            Athlete.create("bigfatjiji");
-            Athlete.create("Faker-Senpai");
+            Athlete.create("HotShotGG", localGame);
+            Athlete.create("NyJacky", localGame);
+            Athlete.create("bigfatjiji", localGame);
+            Athlete.create("Faker-Senpai", localGame);
 
             return redirect(routes.Application.rosterInit());
         }
@@ -173,7 +173,7 @@ public class Application extends Controller {
             return redirect(routes.Application.index());
         }
         else {
-            return ok(rosterinit.render(Athlete.findAll(), team));
+            return ok(rosterinit.render(Athlete.findAthletesInGameOf(localUser), team));
         }
     }
 

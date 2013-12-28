@@ -4,7 +4,9 @@ import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 /**
  * Game team entity.
@@ -17,6 +19,12 @@ public class Team extends Model {
      */
     @Id
     public Long id;
+
+    /**
+     * The game that this team exists in.
+     */
+    @ManyToOne
+    public Game whichGame;
 
     /**
      * The name of the team.
@@ -35,10 +43,12 @@ public class Team extends Model {
 
     /**
      * Constructor for team that includes an owner.
+     * @param whichGame The game this team is being created in.
      * @param name The name of the team.
      * @param logo The name of the logo that the team uses.
      */
-    public Team(String name, String logo) {
+    public Team(Game whichGame, String name, String logo) {
+        this.whichGame = whichGame;
         this.name = name;
         this.logo = logo;
     }
@@ -53,13 +63,23 @@ public class Team extends Model {
     }
 
     /**
+     * Method to get the list of Teams that belong to a particular game.
+     * @param game The game to look up.
+     * @return The list of teams belonging to a game.
+     */
+    public static List<Team> findTeamsOf(Game game) {
+        return Team.find.where().eq("whichGame", game).findList();
+    }
+
+    /**
      * Creates an instance of Team and saves it to the db.
+     * @param whichGame The game this team is being created in.
      * @param name The name of the team.
      * @param logo The filename of the logo that the team uses.
      * @return The team object.
      */
-    public static Team create(String name, String logo) {
-        Team team = new Team(name, logo);
+    public static Team create(Game whichGame, String name, String logo) {
+        Team team = new Team(whichGame, name, logo);
         team.save();
         return team;
     }

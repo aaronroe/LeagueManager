@@ -13,8 +13,9 @@ public class Game extends Model {
 
     /**
      * The user whose game this is.
+     * Things get more complex when users can have more than one team.
      */
-    @ManyToOne
+    @OneToOne
     public User owner;
 
     /**
@@ -69,7 +70,7 @@ public class Game extends Model {
      * @return The team created.
      */
     public Team createUserTeam(String name, String logo) {
-        Team userTeam = Team.create(name, logo);
+        Team userTeam = Team.create(this, name, logo);
         this.userTeam = userTeam;
         this.save();
 
