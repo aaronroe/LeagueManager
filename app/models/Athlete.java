@@ -56,6 +56,14 @@ public class Athlete extends Model {
     }
 
     /**
+     * Helper method that provides whether or not an athlete is on a team.
+     * @return Whether or not the athlete is on a team.
+     */
+    public boolean isOnTeam() {
+        return this.team != null;
+    }
+
+    /**
      * Gets all the athletes in the database.
      * @return A list of all the athletes.
      */
