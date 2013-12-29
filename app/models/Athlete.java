@@ -1,8 +1,6 @@
-package models.athlete;
+package models;
 
-import models.Game;
-import models.Team;
-import models.User;
+import models.athlete.SoloQueueRating;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -35,6 +33,11 @@ public class Athlete extends Model {
     public Game whichGame;
 
     /**
+     * The rating that the player has.
+     */
+    public SoloQueueRating soloQueueRating;
+
+    /**
      * The name of the player.
      */
     public String name;
@@ -49,11 +52,13 @@ public class Athlete extends Model {
      * @param name The name of the athlete.
      * @param team The team the athlete belongs to.
      * @param whichGame The game that this athlete resides in.
+     * @param soloQueueRating The solo queue rating of the player.
      */
-    public Athlete(String name, Team team, Game whichGame) {
+    public Athlete(String name, Team team, Game whichGame, SoloQueueRating soloQueueRating) {
         this.whichGame = whichGame;
         this.name = name;
         this.team = team;
+        this.soloQueueRating = soloQueueRating;
     }
 
     /**
@@ -105,8 +110,8 @@ public class Athlete extends Model {
      * @param teamId The id of the team that this athlete is a part of.
      * @return The new athlete.
      */
-    public static Athlete create(String name, Long teamId, Game game) {
-        Athlete athlete = new Athlete(name, Team.find.ref(teamId), game);
+    public static Athlete create(String name, Long teamId, Game game, SoloQueueRating soloQueueRating) {
+        Athlete athlete = new Athlete(name, Team.find.ref(teamId), game, soloQueueRating);
         athlete.save();
         return athlete;
     }
@@ -117,8 +122,8 @@ public class Athlete extends Model {
      * @param game The game that the athlete resides in.
      * @return The new athlete.
      */
-    public static Athlete create(String name, Game game) {
-        Athlete athlete = new Athlete(name, null, game);
+    public static Athlete create(String name, Game game, SoloQueueRating soloQueueRating) {
+        Athlete athlete = new Athlete(name, null, game, soloQueueRating);
         athlete.save();
         return athlete;
     }

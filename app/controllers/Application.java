@@ -3,10 +3,11 @@ package controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import models.athlete.Athlete;
+import models.Athlete;
 import models.Game;
 import models.Team;
 import models.User;
+import models.athlete.SoloQueueRating;
 import models.forms.InitialTeam;
 import play.Routes;
 import play.data.Form;
@@ -152,10 +153,10 @@ public class Application extends Controller {
             Team teamFromForm = localGame.createUserTeam(formData.name, formData.logo);
 
             // initialize a pool of athletes now!
-            Athlete.create("HotShotGG", localGame);
-            Athlete.create("NyJacky", localGame);
-            Athlete.create("bigfatjiji", localGame);
-            Athlete.create("Faker-Senpai", localGame);
+            Athlete.create("HotShotGG", localGame, SoloQueueRating.DiamondI);
+            Athlete.create("NyJacky", localGame, SoloQueueRating.DiamondI);
+            Athlete.create("bigfatjiji", localGame, SoloQueueRating.DiamondI);
+            Athlete.create("Faker-Senpai", localGame, SoloQueueRating.Challenger);
 
             return redirect(routes.Application.rosterInit());
         }

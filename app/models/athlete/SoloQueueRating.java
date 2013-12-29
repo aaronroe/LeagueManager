@@ -1,65 +1,34 @@
 package models.athlete;
 
-import play.db.ebean.Model;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 /**
- * Class that represents a solo queue division.
+ * Division enum to represent divisions bronze, silver, ...
  */
-@Entity
-public class SoloQueueRating extends Model {
-    /**
-     * Primary db key for player.
-     */
-    @Id
-    public Long id;
+public enum SoloQueueRating {
+    BronzeI("Bronze I"), BronzeII("Bronze II"), BronzeIII("Bronze III"), BronzeIV("Bronze IV"), BronzeV("Bronze V"),
+    SilverI("Silver I"), SilverII("Silver II"), SilverIII("Silver III"), SilverIV("Silver IV"), SilverV("Silver V"),
+    GoldI("Gold I"), GoldII("Gold II"), GoldIII("Gold III"), GoldIV("Gold IV"), GoldV("Gold V"),
+    PlatinumI("Platinum I"), PlatinumII("Platinum II"), PlatinumIII("Platinum III"), PlatinumIV("Platinum IV"), PlatinumV("Platinum V"),
+    DiamondI("Diamond I"), DiamondII("Diamond II"), DiamondIII("Diamond III"), DiamondIV("Diamond IV"), DiamondV("Diamond V"),
+    Challenger("Challenger");
 
     /**
-     * Division included in the rating.
+     * The textRepresentation version of the rating.
      */
-    public Division division;
+    private final String textRepresentation;
 
     /**
-     * Number within the division.
+     * Constructor for SoloQueueRating. Allows it to have a toString.
+     * @param textRepresentation The textRepresentation representation of the rating.
      */
-    public int divisionNum;
-
-    /**
-     * Division enum to represent divisions bronze, silver, ...
-     */
-    public enum Division {
-        Bronze, Silver, Gold, Platinum, Diamond, Challenger
+    private SoloQueueRating(String textRepresentation) {
+        this.textRepresentation = textRepresentation;
     }
 
     /**
-     * Constructor for a SoloQueue Rating. Takes in a division and a division number.
-     * @param division The division (e.g. Division.bronze)
-     * @param divisionNum The division number (e.g. 2)
-     */
-    public SoloQueueRating(Division division, int divisionNum) {
-        this.division = division;
-        this.divisionNum = divisionNum;
-    }
-
-    /**
-     * Creates a solo queue rating and saves it to the database.
-     * @param division The division to create the rating for.
-     * @param divisionNum The number within the division.
-     * @return The new solo queue rating.
-     */
-    public static SoloQueueRating create(Division division, int divisionNum) {
-        SoloQueueRating rating = new SoloQueueRating(division, divisionNum);
-        rating.save();
-        return rating;
-    }
-
-    /**
-     * Gets a string representation of a solo queue rating.
-     * @return The string representation of a solo queue rating.
+     * The toString method for a solo queue rating.
+     * @return The String representation of a solo queue rating.
      */
     public String toString() {
-        return "" + this.division + divisionNum;
+        return this.textRepresentation;
     }
 }

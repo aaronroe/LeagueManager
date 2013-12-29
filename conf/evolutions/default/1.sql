@@ -7,7 +7,9 @@ create table athlete (
   id                        bigint not null,
   team_id                   bigint,
   which_game_id             bigint,
+  solo_queue_rating         integer,
   name                      varchar(255),
+  constraint ck_athlete_solo_queue_rating check (solo_queue_rating in (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25)),
   constraint pk_athlete primary key (id))
 ;
 
