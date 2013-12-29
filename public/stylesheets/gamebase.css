@@ -11,6 +11,16 @@ html * {
 }
 
 /**
+ * Logo styles
+ */
+.logo-small {
+    width: 38px;
+}
+.logo-medium {
+    width: 60px;
+}
+
+/**
  * Styles for the navbar at the top of the game.
  */
 .navbar-logo {

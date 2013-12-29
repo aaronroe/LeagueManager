@@ -1,3 +1,3 @@
-@(logoName: String)
+@(logoName: String, size: String)
 
-<img src="@routes.Assets.at("images/logos/"+logoName)" alt="" />
+<img class="logo-@size" src="@routes.Assets.at("images/logos/"+logoName)" alt="" />
