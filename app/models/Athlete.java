@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Game Athlete entity.
@@ -33,7 +34,7 @@ public class Athlete extends Model {
     public Game whichGame;
 
     /**
-     * The rating that the player has.
+     * The solo-queue rating that the player has.
      */
     public SoloQueueRating soloQueueRating;
 
@@ -41,6 +42,24 @@ public class Athlete extends Model {
      * The name of the player.
      */
     public String name;
+
+    // begin attributes
+
+    public int reflexes;
+
+    public int concentration;
+
+    public int handEyeCoordination;
+
+    public int perception;
+
+    public int intelligence;
+
+    public int wits;
+
+    public int resolution;
+
+    // end attributes
 
     /**
      * Finder for Athlete.
@@ -59,6 +78,26 @@ public class Athlete extends Model {
         this.name = name;
         this.team = team;
         this.soloQueueRating = soloQueueRating;
+
+        // init random stats for the player.
+        this.initRandomStats(5, 15);
+    }
+
+    /**
+     * Simple helper method that initializes an athlete's stats randomly.
+     * @param min The minimum stat value.
+     * @param max The maximum stat value.
+     */
+    private void initRandomStats(int min, int max) {
+        Random random = new Random();
+
+        this.reflexes = random.nextInt(max-min) + min;
+        this.concentration = random.nextInt(max-min) + min;
+        this.handEyeCoordination = random.nextInt(max-min) + min;
+        this.perception = random.nextInt(max-min) + min;
+        this.intelligence = random.nextInt(max-min) + min;
+        this.wits = random.nextInt(max-min) + min;
+        this.resolution = random.nextInt(max-min) + min;
     }
 
     /**

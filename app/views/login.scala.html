@@ -7,7 +7,6 @@
 <div class="auth-container">
     <h1>League Manager</h1>
     <div class="span3">
-        @* Display proprietary login form *@
         @helper.form(routes.Application.doLogin) {
 
         @if(loginForm.hasGlobalErrors) {
@@ -19,9 +18,9 @@
         @_emailPartial(loginForm)
 
         @inputPassword(
-        loginForm("password"),
-        '_showConstraints -> false,
-        '_label -> Messages("playauthenticate.login.password.placeholder")
+            loginForm("password"),
+            '_showConstraints -> false,
+            '_label -> Messages("playauthenticate.login.password.placeholder")
         )
 
         <input type="submit" value="Log in" class="btn btn-primary"><br/>

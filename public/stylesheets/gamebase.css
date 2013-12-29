@@ -76,3 +76,11 @@ input[type=radio] + img{
 input[type=radio]:checked + img{
   border:2px solid #3c763d;
 }
+
+/**
+ * Table styles
+ */
+
+thead {
+    font-weight: bold;
+}
