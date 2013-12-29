@@ -7,16 +7,20 @@
 <div class="small-panel">
     <h1>Recruit Solo-Queue Players</h1>
     <table class="table table-hover">
-        <tr>
-            <td><strong>Player Name</strong></td>
-            <td><strong>Solo-Queue Rating</strong></td>
-        </tr>
-        @for(athlete <- athleteList) {
+        <thead>
             <tr>
-                <td>@athlete.name</td>
-                <td>@athlete.soloQueueRating</td>
+                <td><strong>Player Name</strong></td>
+                <td><strong>Solo-Queue Rating</strong></td>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @for(athlete <- athleteList) {
+                <tr>
+                    <td>@athlete.name</td>
+                    <td>@athlete.soloQueueRating</td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 }
