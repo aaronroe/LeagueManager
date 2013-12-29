@@ -1,12 +1,13 @@
-package models;
+package models.athlete;
 
+import models.Game;
+import models.Team;
+import models.User;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
