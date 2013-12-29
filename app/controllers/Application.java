@@ -152,11 +152,14 @@ public class Application extends Controller {
             InitialTeam formData = filledForm.get();
             Team teamFromForm = localGame.createUserTeam(formData.name, formData.logo);
 
+            // create an example team.
+            Team skTelecomT1K = Team.create(localGame, "SK Telecom T1 K", "sktk.png");
+
             // initialize a pool of athletes now!
             Athlete.create("HotShotGG", localGame, SoloQueueRating.DiamondI);
             Athlete.create("NyJacky", localGame, SoloQueueRating.DiamondI);
             Athlete.create("bigfatjiji", localGame, SoloQueueRating.DiamondI);
-            Athlete.create("Faker-Senpai", localGame, SoloQueueRating.Challenger);
+            Athlete.create("Faker", skTelecomT1K.id, localGame, SoloQueueRating.Challenger);
 
             return redirect(routes.Application.rosterInit());
         }

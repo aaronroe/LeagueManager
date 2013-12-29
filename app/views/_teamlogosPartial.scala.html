@@ -5,9 +5,7 @@
 
 @logoRadioGroup(
     f("logo"),
-    options = options("clg.png"->routes.Assets.at("images/logos/clg.png").toString(),
-                        "tsm.png"->routes.Assets.at("images/logos/tsm.png").toString()
-    ),
+    options = Seq("clg.png", "tsm.png"),
     '_label -> "Team Logo",
     '_showConstraints -> false,
     '_error -> f("logo").error.map(_.withMessage("select logo"))

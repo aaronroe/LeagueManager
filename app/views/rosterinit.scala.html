@@ -11,6 +11,7 @@
             <tr>
                 <td>Player Name</td>
                 <td>Solo-Queue Rating</td>
+                <td>Team</td>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,11 @@
                 <tr>
                     <td>@athlete.name</td>
                     <td>@athlete.soloQueueRating</td>
+                    @if(athlete.isOnTeam()) {
+                        <td>@logoHelper(athlete.team.logo) @athlete.team.name</td>
+                    } else {
+                        <td>None</td>
+                    }
                 </tr>
             }
         </tbody>

@@ -1,5 +1,7 @@
 @(title: String, teamName: String, logoName: String, numVisibleTabs: Integer, openTab: Integer)(content: Html)
 
+@import helper._
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -22,7 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li class="nav-text">
                         @if(logoName != null) {
-                            <img src="@routes.Assets.at("images/logos/"+logoName)" alt=""/>
+                            @logoHelper(logoName)
                         }
                         @if(teamName != null) {
                             @teamName

@@ -43,23 +43,32 @@ public class Athlete extends Model {
      */
     public String name;
 
-    // begin attributes
+    // begin base attributes
+    public double baseReflexes;
 
-    public int reflexes;
+    public double baseConcentration;
 
-    public int concentration;
+    public double baseHandEyeCoordination;
 
-    public int handEyeCoordination;
+    public double basePerception;
 
-    public int perception;
+    public double baseIntelligence;
 
-    public int intelligence;
+    public double baseWits;
 
-    public int wits;
+    public double baseResolution;
+    // end base attributes
 
-    public int resolution;
+    // being special attributes
+    /**
+     * How high an athlete can scale up (0-1)
+     */
+    double potential;
 
-    // end attributes
+    double experience;
+
+    double luck;
+    // end special attributes
 
     /**
      * Finder for Athlete.
@@ -80,24 +89,37 @@ public class Athlete extends Model {
         this.soloQueueRating = soloQueueRating;
 
         // init random stats for the player.
-        this.initRandomStats(5, 15);
+        this.initRandomBaseAttributes(5, 15);
+
+        // init special attributes for the player.
+        this.initRandomSpecialAttributes();
     }
 
     /**
-     * Simple helper method that initializes an athlete's stats randomly.
+     * Simple helper method that initializes an athlete's base attributes randomly.
      * @param min The minimum stat value.
      * @param max The maximum stat value.
      */
-    private void initRandomStats(int min, int max) {
+    private void initRandomBaseAttributes(int min, int max) {
         Random random = new Random();
 
-        this.reflexes = random.nextInt(max-min) + min;
-        this.concentration = random.nextInt(max-min) + min;
-        this.handEyeCoordination = random.nextInt(max-min) + min;
-        this.perception = random.nextInt(max-min) + min;
-        this.intelligence = random.nextInt(max-min) + min;
-        this.wits = random.nextInt(max-min) + min;
-        this.resolution = random.nextInt(max-min) + min;
+        this.baseReflexes = random.nextInt(max-min) + min;
+        this.baseConcentration = random.nextInt(max-min) + min;
+        this.baseHandEyeCoordination = random.nextInt(max-min) + min;
+        this.basePerception = random.nextInt(max-min) + min;
+        this.baseIntelligence = random.nextInt(max-min) + min;
+        this.baseWits = random.nextInt(max-min) + min;
+        this.baseResolution = random.nextInt(max-min) + min;
+    }
+
+    /**
+     * Inits the special attributes randomly.
+     */
+    private void initRandomSpecialAttributes() {
+        Random random = new Random();
+        this.potential = random.nextDouble();
+        this.luck = random.nextInt(10);
+        this.experience = random.nextInt(99);
     }
 
     /**
