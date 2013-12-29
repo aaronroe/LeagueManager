@@ -6,10 +6,17 @@
 @gamebase("League Manager - Roster Creation", localTeam.name, localTeam.logo, 0, 0) {
 <div class="small-panel">
     <h1>Recruit Solo-Queue Players</h1>
-    <ul>
+    <table class="table table-hover">
+        <tr>
+            <td><strong>Player Name</strong></td>
+            <td><strong>Solo-Queue Rating</strong></td>
+        </tr>
         @for(athlete <- athleteList) {
-        <li>@athlete.name, @athlete.soloQueueRating</li>
+            <tr>
+                <td>@athlete.name</td>
+                <td>@athlete.soloQueueRating</td>
+            </tr>
         }
-    </ul>
+    </table>
 </div>
 }
