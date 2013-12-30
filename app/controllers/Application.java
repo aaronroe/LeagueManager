@@ -45,12 +45,15 @@ public class Application extends Controller {
             return redirect(routes.Application.login());
         }
         else {
-            Team teamOfUsers = Team.findTeamOf(localUser);
-            if (teamOfUsers == null) {
+            Game localGame = Game.findGameOf(localUser);
+            if (!localGame.isTeamInit) {
                 return redirect(routes.Application.teamInit());
             }
-            else {
+            else if (!localGame.isRosterInit) {
                 return redirect(routes.Application.rosterInit());
+            }
+            else {
+                return redirect(routes.Application.overview());
             }
         }
 	}
@@ -73,13 +76,14 @@ public class Application extends Controller {
 	@Restrict(@Group(Application.USER_ROLE))
 	public static Result overview() {
 		final User localUser = getLocalUser(session());
-        Team team = Team.findTeamOf(localUser);
-        if (team == null) {
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || !localGame.isRosterInit) {
             return redirect(routes.Application.index());
         }
-        else {
-            return ok(overview.render(team.name, team.logo));
-        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return ok(overview.render(team.name, team.logo));
 	}
 
 	@Restrict(@Group(Application.USER_ROLE))
@@ -126,13 +130,14 @@ public class Application extends Controller {
     @Restrict(@Group(Application.USER_ROLE))
     public static Result teamInit() {
         final User localUser = getLocalUser(session());
-        Team team = Team.findTeamOf(localUser);
-        if (team == null) {
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit) {
             return ok(teaminit.render(form(InitialTeam.class)));
         }
-        else {
-            return redirect(routes.Application.index());
-        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return redirect(routes.Application.index());
     }
 
     /**
@@ -141,14 +146,16 @@ public class Application extends Controller {
      */
     @Restrict(@Group(Application.USER_ROLE))
     public static Result doTeamInit() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+        if (localGame.isTeamInit) {
+            return redirect(routes.Application.index());
+        }
+
         final Form<InitialTeam> filledForm = form(InitialTeam.class).bindFromRequest();
         if (filledForm.hasErrors()) {
             return badRequest(teaminit.render(filledForm));
         } else {
-            // get the local user and his/her game.
-            final User localUser = getLocalUser(session());
-            Game localGame = Game.findGameOf(localUser);
-
             // create the new team.
             InitialTeam formData = filledForm.get();
             Team teamFromForm = localGame.createUserTeam(formData.name, formData.logo);
@@ -162,6 +169,8 @@ public class Application extends Controller {
             Athlete.create("bigfatjiji", localGame, SoloQueueRating.DiamondI);
             Athlete.create("Faker", skTelecomT1K.id, localGame, SoloQueueRating.Challenger);
 
+            localGame.setTeamInit(true);
+
             return redirect(routes.Application.rosterInit());
         }
     }
@@ -173,13 +182,14 @@ public class Application extends Controller {
     @Restrict(@Group(Application.USER_ROLE))
     public static Result rosterInit() {
         final User localUser = getLocalUser(session());
-        Team team = Team.findTeamOf(localUser);
-        if (team == null) {
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || localGame.isRosterInit) {
             return redirect(routes.Application.index());
         }
-        else {
-            return ok(rosterinit.render(form(InitialRoster.class), Athlete.findAthletesInGameOf(localUser), team));
-        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return ok(rosterinit.render(form(InitialRoster.class), Athlete.findAthletesInGameOf(localUser), team));
     }
 
     /**
@@ -189,23 +199,26 @@ public class Application extends Controller {
     @Restrict(@Group(Application.USER_ROLE))
     public static Result doRosterInit() {
         final User localUser = getLocalUser(session());
-        Team localTeam = Team.findTeamOf(localUser);
-
-        if (localTeam == null) {
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || localGame.isRosterInit) {
             return redirect(routes.Application.index());
         }
-        else {
-            final Form<InitialRoster> filledForm = form(InitialRoster.class).bindFromRequest();
 
-            if (filledForm.hasErrors()) {
-                return badRequest(rosterinit.render(filledForm, Athlete.findAthletesInGameOf(localUser), localTeam));
-            } else {
-                InitialRoster initialRoster = filledForm.get();
-                for (Long athleteId : initialRoster.athletes) {
-                    Athlete.find.ref(athleteId).setTeam(localTeam);
-                }
-                return ok();
+        Team localTeam = Team.findTeamOf(localUser);
+
+        final Form<InitialRoster> filledForm = form(InitialRoster.class).bindFromRequest();
+
+        if (filledForm.hasErrors()) {
+            return badRequest(rosterinit.render(filledForm, Athlete.findAthletesInGameOf(localUser), localTeam));
+        } else {
+            InitialRoster initialRoster = filledForm.get();
+            for (Long athleteId : initialRoster.athletes) {
+                Athlete.find.ref(athleteId).setTeam(localTeam);
             }
+
+            localGame.setRosterInit(true);
+
+            return redirect(routes.Application.overview());
         }
     }
 
@@ -216,6 +229,7 @@ public class Application extends Controller {
      */
 	public static Result signup() {
         final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
         if (localUser == null) {
             return ok(signup.render(MyUsernamePasswordAuthProvider.SIGNUP_FORM));
         }

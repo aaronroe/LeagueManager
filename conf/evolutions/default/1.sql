@@ -27,6 +27,8 @@ create table game (
   id                        bigint not null,
   owner_id                  bigint,
   user_team_id              bigint,
+  is_team_init              boolean,
+  is_roster_init            boolean,
   constraint pk_game primary key (id))
 ;
 

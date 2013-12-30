@@ -31,6 +31,16 @@ public class Game extends Model {
     public Long id;
 
     /**
+     * Whether or not the user's team has been init.
+     */
+    public boolean isTeamInit;
+
+    /**
+     * Whether or not the user's roster has been init.
+     */
+    public boolean isRosterInit;
+
+    /**
      * Finder for team.
      */
     public static Model.Finder<Long,Game> find = new Model.Finder<Long,Game>(Long.class, Game.class);
@@ -41,6 +51,27 @@ public class Game extends Model {
      */
     public Game(User owner) {
         this.owner = owner;
+
+        this.isRosterInit = false;
+        this.isTeamInit = false;
+    }
+
+    /**
+     * Setter for whether the team has been init. Saves to db.
+     * @param isTeamInit Whether the team has been init.
+     */
+    public void setTeamInit(boolean isTeamInit) {
+        this.isTeamInit = isTeamInit;
+        this.save();
+    }
+
+    /**
+     * Setter for whether the roster has been init. Saves to db.
+     * @param isRosterInit Whether the roster has been init.
+     */
+    public void setRosterInit(boolean isRosterInit) {
+        this.isRosterInit = isRosterInit;
+        this.save();
     }
 
     /**
