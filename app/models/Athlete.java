@@ -131,6 +131,15 @@ public class Athlete extends Model {
     }
 
     /**
+     * Setter for the team field. Saves to db.
+     * @param team The team to set.
+     */
+    public void setTeam(Team team) {
+        this.team = team;
+        this.save();
+    }
+
+    /**
      * Gets all the athletes in the database.
      * @return A list of all the athletes.
      */

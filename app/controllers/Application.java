@@ -189,17 +189,21 @@ public class Application extends Controller {
     @Restrict(@Group(Application.USER_ROLE))
     public static Result doRosterInit() {
         final User localUser = getLocalUser(session());
-        Team team = Team.findTeamOf(localUser);
+        Team localTeam = Team.findTeamOf(localUser);
 
-        if (team == null) {
+        if (localTeam == null) {
             return redirect(routes.Application.index());
         }
         else {
             final Form<InitialRoster> filledForm = form(InitialRoster.class).bindFromRequest();
 
             if (filledForm.hasErrors()) {
-                return badRequest(rosterinit.render(filledForm, Athlete.findAthletesInGameOf(localUser), team));
+                return badRequest(rosterinit.render(filledForm, Athlete.findAthletesInGameOf(localUser), localTeam));
             } else {
+                InitialRoster initialRoster = filledForm.get();
+                for (Long athleteId : initialRoster.athletes) {
+                    Athlete.find.ref(athleteId).setTeam(localTeam);
+                }
                 return ok();
             }
         }
