@@ -1,5 +1,6 @@
 package models;
 
+import models.athlete.ChampionAffinities;
 import models.athlete.SoloQueueRating;
 import play.db.ebean.Model;
 
@@ -37,6 +38,11 @@ public class Athlete extends Model {
      * The solo-queue rating that the player has.
      */
     public SoloQueueRating soloQueueRating;
+
+    /**
+     * The champion affinities the athlete has.
+     */
+    public ChampionAffinities championAffinities;
 
     /**
      * The name of the player.
@@ -93,6 +99,9 @@ public class Athlete extends Model {
 
         // init special attributes for the player.
         this.initRandomSpecialAttributes();
+
+        // init champion affinities with random values.
+        this.championAffinities = new ChampionAffinities();
     }
 
     /**
