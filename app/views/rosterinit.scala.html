@@ -23,9 +23,9 @@
             @athleteCheckboxGroup(
                 initRosterForm("athletes"),
                 options = athleteList,
+                '_label -> "Available Players",
                 '_showConstraints -> false,
-                '_error -> initRosterForm("logo").error.map(_.withMessage("select players")),
-                '_label -> "Available Players"
+                '_error -> initRosterForm("logo").error.map(_.withMessage("select players"))
             )
             </tbody>
         </table>
