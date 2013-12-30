@@ -1,13 +1,11 @@
 @**
-* Generate an logo radio group with images.
+* Generate a logo radio group with images.
 *
 * Example:
 * {{{
 * @logoRadioGroup(
 *     f("logo"),
-*     options = options("clg.png"->routes.Assets.at("images/logos/clg.png").toString(),
-*                         "tsm.png"->routes.Assets.at("images/logos/tsm.png").toString()
-*     ),
+*     options = options("clg.png", "tsm.png"),
 *     '_label -> "Team Logo",
 *     '_error -> f("logo").error.map(_.withMessage("select logo"))
 )

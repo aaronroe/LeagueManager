@@ -1,32 +1,32 @@
-@(athleteList: List[Athlete], localTeam: Team)
+@(initRosterForm: Form[_], athleteList: List[Athlete], localTeam: Team)
 
 @import helper._
-@import helper.twitterBootstrap._
 
 @gamebase("League Manager - Roster Creation", localTeam.name, localTeam.logo, 0, 0) {
 <div class="small-panel">
     <h1>Recruit Solo-Queue Players</h1>
-    <table class="table table-hover">
-        <thead>
+    @helper.form(routes.Application.doRosterInit) {
+        <table class="table table-hover">
+            <thead>
             <tr>
+                <td></td>
                 <td>Player Name</td>
                 <td>Solo-Queue Rating</td>
                 <td>Team</td>
             </tr>
-        </thead>
-        <tbody>
-            @for(athlete <- athleteList) {
-                <tr>
-                    <td>@athlete.name</td>
-                    <td>@athlete.soloQueueRating</td>
-                    @if(athlete.isOnTeam()) {
-                        <td>@logoHelper(athlete.team.logo, "small") @athlete.team.name</td>
-                    } else {
-                        <td>None</td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @athleteCheckboxGroup(
+                initRosterForm("athletes"),
+                options = athleteList,
+                '_showConstraints -> false,
+                '_error -> initRosterForm("logo").error.map(_.withMessage("select players")),
+                '_label -> "Available Players"
+            )
+            </tbody>
+        </table>
+
+        <input type="submit" value="Continue" class="btn btn-primary"><br/>
+    }
 </div>
 }

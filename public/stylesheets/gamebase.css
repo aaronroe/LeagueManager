@@ -88,6 +88,13 @@ input[type=radio]:checked + img{
 }
 
 /**
+ * CSS for player group form.
+ */
+.player-checkbox > input {
+    display: none;
+}
+
+/**
  * Table styles
  */
 

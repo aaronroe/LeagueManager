@@ -1,0 +1,46 @@
+@**
+* Generate an athlete radio group with a table.
+*
+* Example:
+* {{{
+* @athleteCheckboxGroup(
+*           f("athletes"),
+*           options = Seq(athlete1, athlete2)
+*           '_label -> "Available Players",
+*           '_error -> f("athletes").error.map(_.withMessage("select one or more athletes")))
+*
+* }}}
+*
+* @param field The form field.
+* @param options Sequence of options as pairs of value and HTML
+* @param args Set of extra HTML attributes.
+* @param handler The field constructor.
+*@
+@(field: play.api.data.Field, options: Seq[Athlete], args: (Symbol,Any)*)(implicit handler: FieldConstructor, lang: play.api.i18n.Lang)
+
+@input(field, args.map{ x => if(x._1 == '_label) '_name -> x._2 else x }:_*) { (id, name, value, htmlArgs) =>
+<span class="buttonset" id="@id">
+    @defining(field.indexes.map( i => field("[%s]".format(i)).value ).flatten.toSet) { values =>
+        @for(athlete <- options) {
+            <tr>
+                <td>
+                    <input type="checkbox" id="@(id)_@athlete.id" name="@{name + "[]"}" value="@athlete.id" @(if(values.contains(athlete.id)) "checked" else "") @toHtmlArgs(htmlArgs)>
+                </td>
+                <td>
+                    @athlete.name
+                </td>
+                <td>
+                    @athlete.soloQueueRating
+                </td>
+                <td>
+                    @if(athlete.team == null) {
+                        None
+                    } else {
+                        @logoHelper(athlete.team.logo, "small") @athlete.team.name
+                    }
+                </td>
+            </tr>
+        }
+    }
+</span>
+}

@@ -8,6 +8,7 @@ import models.Game;
 import models.Team;
 import models.User;
 import models.athlete.SoloQueueRating;
+import models.forms.InitialRoster;
 import models.forms.InitialTeam;
 import play.Routes;
 import play.data.Form;
@@ -177,7 +178,7 @@ public class Application extends Controller {
             return redirect(routes.Application.index());
         }
         else {
-            return ok(rosterinit.render(Athlete.findAthletesInGameOf(localUser), team));
+            return ok(rosterinit.render(form(InitialRoster.class), Athlete.findAthletesInGameOf(localUser), team));
         }
     }
 
@@ -187,8 +188,23 @@ public class Application extends Controller {
      */
     @Restrict(@Group(Application.USER_ROLE))
     public static Result doRosterInit() {
-        return ok();
+        final User localUser = getLocalUser(session());
+        Team team = Team.findTeamOf(localUser);
+
+        if (team == null) {
+            return redirect(routes.Application.index());
+        }
+        else {
+            final Form<InitialRoster> filledForm = form(InitialRoster.class).bindFromRequest();
+
+            if (filledForm.hasErrors()) {
+                return badRequest(rosterinit.render(filledForm, Athlete.findAthletesInGameOf(localUser), team));
+            } else {
+                return ok();
+            }
+        }
     }
+
 
     /**
      * Gets the game signup view.
