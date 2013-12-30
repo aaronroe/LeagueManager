@@ -6,6 +6,10 @@
 <div class="small-panel">
     <h1>Recruit Solo-Queue Players</h1>
     @helper.form(routes.Application.doRosterInit) {
+        @if(initRosterForm.hasGlobalErrors) {
+            <span class="label label-danger">@initRosterForm.globalError.message</span>
+        }
+
         <table class="table table-hover">
             <thead>
             <tr>
