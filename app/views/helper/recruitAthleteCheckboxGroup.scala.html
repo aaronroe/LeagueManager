@@ -32,6 +32,11 @@
                 <td>
                     @athlete.soloQueueRating
                 </td>
+                <td>
+                    @for(champion <- athlete.championAffinities.getTopChampions(3)) {
+                        @champion
+                    }
+                </td>
             </tr>
         }
     }

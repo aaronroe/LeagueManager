@@ -8,6 +8,7 @@ create table athlete (
   team_id                   bigint,
   which_game_id             bigint,
   solo_queue_rating         integer,
+  champion_affinities_id    bigint,
   name                      varchar(255),
   base_reflexes             double,
   base_concentration        double,
@@ -21,6 +22,11 @@ create table athlete (
   luck                      double,
   constraint ck_athlete_solo_queue_rating check (solo_queue_rating in (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25)),
   constraint pk_athlete primary key (id))
+;
+
+create table champion_affinities (
+  id                        bigint not null,
+  constraint pk_champion_affinities primary key (id))
 ;
 
 create table game (
@@ -98,6 +104,8 @@ create table users_user_permission (
 ;
 create sequence athlete_seq;
 
+create sequence champion_affinities_seq;
+
 create sequence game_seq;
 
 create sequence linked_account_seq;
@@ -116,16 +124,18 @@ alter table athlete add constraint fk_athlete_team_1 foreign key (team_id) refer
 create index ix_athlete_team_1 on athlete (team_id);
 alter table athlete add constraint fk_athlete_whichGame_2 foreign key (which_game_id) references game (id) on delete restrict on update restrict;
 create index ix_athlete_whichGame_2 on athlete (which_game_id);
-alter table game add constraint fk_game_owner_3 foreign key (owner_id) references users (id) on delete restrict on update restrict;
-create index ix_game_owner_3 on game (owner_id);
-alter table game add constraint fk_game_userTeam_4 foreign key (user_team_id) references team (id) on delete restrict on update restrict;
-create index ix_game_userTeam_4 on game (user_team_id);
-alter table linked_account add constraint fk_linked_account_user_5 foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_linked_account_user_5 on linked_account (user_id);
-alter table team add constraint fk_team_whichGame_6 foreign key (which_game_id) references game (id) on delete restrict on update restrict;
-create index ix_team_whichGame_6 on team (which_game_id);
-alter table token_action add constraint fk_token_action_targetUser_7 foreign key (target_user_id) references users (id) on delete restrict on update restrict;
-create index ix_token_action_targetUser_7 on token_action (target_user_id);
+alter table athlete add constraint fk_athlete_championAffinities_3 foreign key (champion_affinities_id) references champion_affinities (id) on delete restrict on update restrict;
+create index ix_athlete_championAffinities_3 on athlete (champion_affinities_id);
+alter table game add constraint fk_game_owner_4 foreign key (owner_id) references users (id) on delete restrict on update restrict;
+create index ix_game_owner_4 on game (owner_id);
+alter table game add constraint fk_game_userTeam_5 foreign key (user_team_id) references team (id) on delete restrict on update restrict;
+create index ix_game_userTeam_5 on game (user_team_id);
+alter table linked_account add constraint fk_linked_account_user_6 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_linked_account_user_6 on linked_account (user_id);
+alter table team add constraint fk_team_whichGame_7 foreign key (which_game_id) references game (id) on delete restrict on update restrict;
+create index ix_team_whichGame_7 on team (which_game_id);
+alter table token_action add constraint fk_token_action_targetUser_8 foreign key (target_user_id) references users (id) on delete restrict on update restrict;
+create index ix_token_action_targetUser_8 on token_action (target_user_id);
 
 
 
@@ -142,6 +152,8 @@ alter table users_user_permission add constraint fk_users_user_permission_user_0
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists athlete;
+
+drop table if exists champion_affinities;
 
 drop table if exists game;
 
@@ -164,6 +176,8 @@ drop table if exists user_permission;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists athlete_seq;
+
+drop sequence if exists champion_affinities_seq;
 
 drop sequence if exists game_seq;
 

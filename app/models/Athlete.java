@@ -2,11 +2,13 @@ package models;
 
 import models.athlete.ChampionAffinities;
 import models.athlete.SoloQueueRating;
+import models.game.Champion;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.util.List;
 import java.util.Random;
 
@@ -42,6 +44,7 @@ public class Athlete extends Model {
     /**
      * The champion affinities the athlete has.
      */
+    @OneToOne
     public ChampionAffinities championAffinities;
 
     /**
@@ -101,7 +104,7 @@ public class Athlete extends Model {
         this.initRandomSpecialAttributes();
 
         // init champion affinities with random values.
-        this.championAffinities = new ChampionAffinities();
+        this.championAffinities = ChampionAffinities.create();
     }
 
     /**
