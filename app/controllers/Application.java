@@ -167,6 +167,8 @@ public class Application extends Controller {
             Athlete.create("HotShotGG", localGame, SoloQueueRating.DiamondI);
             Athlete.create("NyJacky", localGame, SoloQueueRating.DiamondI);
             Athlete.create("bigfatjiji", localGame, SoloQueueRating.DiamondI);
+            Athlete.create("Chaox", localGame, SoloQueueRating.Challenger);
+            Athlete.create("PhantomL0rd", localGame, SoloQueueRating.DiamondI);
             Athlete.create("Faker", skTelecomT1K.id, localGame, SoloQueueRating.Challenger);
 
             localGame.setTeamInit(true);
