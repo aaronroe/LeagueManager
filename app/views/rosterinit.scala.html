@@ -10,25 +10,8 @@
             <span class="label label-danger">@initRosterForm.globalError.message</span>
         }
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <td></td>
-                <td>Player Name</td>
-                <td>Solo-Queue Rating</td>
-                <td>Team</td>
-            </tr>
-            </thead>
-            <tbody>
-            @athleteCheckboxGroup(
-                initRosterForm("athletes"),
-                options = athleteList,
-                '_label -> "Available Players",
-                '_showConstraints -> false,
-                '_error -> initRosterForm("logo").error.map(_.withMessage("select players"))
-            )
-            </tbody>
-        </table>
+        @_recruitAthletesPartial(initRosterForm, athleteList, localTeam);
+
 
         <input type="submit" value="Continue" class="btn btn-primary"><br/>
     }

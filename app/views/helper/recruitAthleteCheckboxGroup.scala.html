@@ -32,13 +32,6 @@
                 <td>
                     @athlete.soloQueueRating
                 </td>
-                <td>
-                    @if(athlete.team == null) {
-                        None
-                    } else {
-                        @logoHelper(athlete.team.logo, "small") @athlete.team.name
-                    }
-                </td>
             </tr>
         }
     }
