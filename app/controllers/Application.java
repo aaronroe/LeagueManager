@@ -189,7 +189,7 @@ public class Application extends Controller {
 
         Team team = Team.findTeamOf(localUser);
 
-        return ok(rosterinit.render(form(InitialRoster.class), Athlete.findAthletesInGameOf(localUser), team));
+        return ok(rosterinit.render(form(InitialRoster.class), Athlete.findRecruitableAthletes(localGame), team));
     }
 
     /**
@@ -209,7 +209,7 @@ public class Application extends Controller {
         final Form<InitialRoster> filledForm = form(InitialRoster.class).bindFromRequest();
 
         if (filledForm.hasErrors()) {
-            return badRequest(rosterinit.render(filledForm, Athlete.findAthletesInGameOf(localUser), localTeam));
+            return badRequest(rosterinit.render(filledForm, Athlete.findRecruitableAthletes(localGame), localTeam));
         } else {
             InitialRoster initialRoster = filledForm.get();
             for (Long athleteId : initialRoster.athletes) {

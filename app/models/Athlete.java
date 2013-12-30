@@ -166,12 +166,12 @@ public class Athlete extends Model {
     }
 
     /**
-     * Finds all the athletes belonging to the game of a certain user.
-     * @param user The user whose game to lookup in.
-     * @return The list of athletes in the game belonging to the user.
+     * Finds all athletes that are not on any team at the moment.
+     * @param game The game to check for.
+     * @return The list of recruitable athletes.
      */
-    public static List<Athlete> findAthletesInGameOf(User user) {
-        return findAthletesOf(Game.findGameOf(user));
+    public static List<Athlete> findRecruitableAthletes(Game game) {
+        return Athlete.find.where().eq("whichGame", game).eq("team", null).findList();
     }
 
     /**
