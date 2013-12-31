@@ -3,7 +3,7 @@ package controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import models.Athlete;
+import models.athlete.Athlete;
 import models.Game;
 import models.Team;
 import models.User;
