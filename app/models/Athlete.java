@@ -1,7 +1,7 @@
-package models.athlete;
+package models;
 
-import models.Game;
-import models.Team;
+import models.athlete.ChampionAffinities;
+import models.athlete.SoloQueueRating;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
