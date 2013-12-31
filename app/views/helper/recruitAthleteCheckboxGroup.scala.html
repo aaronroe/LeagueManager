@@ -33,7 +33,7 @@
                     @athlete.soloQueueRating
                 </td>
                 <td>
-                    @for(champion <- athlete.championAffinities.getTopChampions(3)) {
+                    @for(champion <- athlete.championAffinities.getTopChampions(5)) {
                         @championHelper(champion.getIconName())
                     }
                 </td>
