@@ -58,7 +58,7 @@ public class ChampionAffinities extends Model {
         Collections.sort(entryList, new Comparator<Map.Entry<ChampionName, Double>>() {
             @Override
             public int compare(Map.Entry<ChampionName, Double> o1, Map.Entry<ChampionName, Double> o2) {
-                return ((Comparable) ( (o2)).getValue())
+                return (((o2)).getValue())
                         .compareTo(((o1)).getValue());
             }
         });
