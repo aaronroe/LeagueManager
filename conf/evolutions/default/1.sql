@@ -40,6 +40,13 @@ create table game (
   constraint pk_game primary key (id))
 ;
 
+create table lane_affinity (
+  id                        bigint not null,
+  lane_name                 varchar(255),
+  strength                  double,
+  constraint pk_lane_affinity primary key (id))
+;
+
 create table linked_account (
   id                        bigint not null,
   user_id                   bigint,
@@ -99,6 +106,12 @@ create table athlete_champion_affinity (
   constraint pk_athlete_champion_affinity primary key (athlete_id, champion_affinity_id))
 ;
 
+create table athlete_lane_affinity (
+  athlete_id                     bigint not null,
+  lane_affinity_id               bigint not null,
+  constraint pk_athlete_lane_affinity primary key (athlete_id, lane_affinity_id))
+;
+
 create table users_security_role (
   users_id                       bigint not null,
   security_role_id               bigint not null,
@@ -115,6 +128,8 @@ create sequence athlete_seq;
 create sequence champion_affinity_seq;
 
 create sequence game_seq;
+
+create sequence lane_affinity_seq;
 
 create sequence linked_account_seq;
 
@@ -149,6 +164,10 @@ alter table athlete_champion_affinity add constraint fk_athlete_champion_affinit
 
 alter table athlete_champion_affinity add constraint fk_athlete_champion_affinity__02 foreign key (champion_affinity_id) references champion_affinity (id) on delete restrict on update restrict;
 
+alter table athlete_lane_affinity add constraint fk_athlete_lane_affinity_athl_01 foreign key (athlete_id) references athlete (id) on delete restrict on update restrict;
+
+alter table athlete_lane_affinity add constraint fk_athlete_lane_affinity_lane_02 foreign key (lane_affinity_id) references lane_affinity (id) on delete restrict on update restrict;
+
 alter table users_security_role add constraint fk_users_security_role_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
 
 alter table users_security_role add constraint fk_users_security_role_securi_02 foreign key (security_role_id) references security_role (id) on delete restrict on update restrict;
@@ -165,9 +184,13 @@ drop table if exists athlete;
 
 drop table if exists athlete_champion_affinity;
 
+drop table if exists athlete_lane_affinity;
+
 drop table if exists champion_affinity;
 
 drop table if exists game;
+
+drop table if exists lane_affinity;
 
 drop table if exists linked_account;
 
@@ -192,6 +215,8 @@ drop sequence if exists athlete_seq;
 drop sequence if exists champion_affinity_seq;
 
 drop sequence if exists game_seq;
+
+drop sequence if exists lane_affinity_seq;
 
 drop sequence if exists linked_account_seq;
 

@@ -1,6 +1,7 @@
 package models;
 
 import models.athlete.ChampionAffinity;
+import models.athlete.LaneAffinity;
 import models.athlete.SoloQueueRating;
 import models.game.ChampionName;
 import play.db.ebean.Model;
@@ -42,6 +43,12 @@ public class Athlete extends Model {
      */
     @ManyToMany
     public List<ChampionAffinity> championAffinities = new ArrayList<ChampionAffinity>();
+
+    /**
+     * The affinities the athlete has with the lane.
+     */
+    @ManyToMany
+    public List<LaneAffinity> laneAffinities = new ArrayList<LaneAffinity>();
 
     /**
      * The name of the player.

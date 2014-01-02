@@ -18,6 +18,16 @@ public class ChampionAffinity extends Model {
     public Long id;
 
     /**
+     * The name of the champion that the affinity is for.
+     */
+    private String championName;
+
+    /**
+     * The strength of the affinity.
+     */
+    private Double strength;
+
+    /**
      * Gets the champion name
      * @return The name of the champion.
      */
@@ -49,16 +59,6 @@ public class ChampionAffinity extends Model {
         this.strength = strength;
         this.save();
     }
-
-    /**
-     * The name of the champion that the affinity is for.
-     */
-    private String championName;
-
-    /**
-     * The strength of the affinity.
-     */
-    private Double strength;
 
     /**
      * Constructor for champion affinity.
