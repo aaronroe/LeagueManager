@@ -4,7 +4,10 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /overview                 controllers.Application.overview
+
+GET     /overview                   controllers.Application.overview
+GET     /management                 controllers.Application.management
+
 GET     /assets/javascript/routes.js    controllers.Application.jsRoutes
 
 GET     /profile                    controllers.Application.profile

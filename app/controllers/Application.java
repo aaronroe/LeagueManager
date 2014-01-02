@@ -86,6 +86,23 @@ public class Application extends Controller {
         return ok(overview.render(team.name, team.logo));
 	}
 
+    /**
+     * Gets the game management view.
+     * @return The game management view. Redirect if there is something uninitialized.
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result management() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+            return redirect(routes.Application.index());
+        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return ok(management.render(team.name, team.logo));
+    }
+
 	@Restrict(@Group(Application.USER_ROLE))
 	public static Result profile() {
 		final User localUser = getLocalUser(session());
