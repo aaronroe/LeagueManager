@@ -36,6 +36,7 @@ create table game (
   user_team_id              bigint,
   is_team_init              boolean,
   is_roster_init            boolean,
+  money                     integer,
   constraint pk_game primary key (id))
 ;
 
