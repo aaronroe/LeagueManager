@@ -138,6 +138,23 @@ public class Application extends Controller {
     }
 
     /**
+     * Gets the game roster recruit view.
+     * @return The game roster recruit view. Redirect if there is something uninitialized.
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result rosterRecruit() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+            return redirect(routes.Application.index());
+        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return ok(roster.render(team));
+    }
+
+    /**
      * Gets the game finances view.
      * @return The game finances view. Redirect if there is something uninitialized.
      */

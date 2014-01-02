@@ -6,9 +6,14 @@
 GET     /                           controllers.Application.index
 
 GET     /overview                   controllers.Application.overview
+
 GET     /management                 controllers.Application.management
+
 GET     /schedule                   controllers.Application.schedule
+
 GET     /roster                     controllers.Application.roster
+GET     /roster/recruit             controllers.Application.rosterRecruit
+
 GET     /finances                   controllers.Application.finances
 
 GET     /assets/javascript/routes.js    controllers.Application.jsRoutes
