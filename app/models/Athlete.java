@@ -225,7 +225,7 @@ public class Athlete extends Model {
         Collections.sort(this.championAffinities, new Comparator<ChampionAffinity>() {
             @Override
             public int compare(ChampionAffinity o1, ChampionAffinity o2) {
-                return o2.getStrength().compareTo(o1.getStrength());
+                return o2.getExactStrength().compareTo(o1.getExactStrength());
             }
         });
 

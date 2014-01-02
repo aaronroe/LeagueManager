@@ -2,22 +2,10 @@
 
 @import helper._
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <td></td>
-        <td>Player Name</td>
-        <td>Solo-Queue Rating</td>
-        <td>Best Champions</td>
-    </tr>
-    </thead>
-    <tbody>
-        @recruitAthleteCheckboxGroup(
-            initRosterForm("athletes"),
-            options = athleteList,
-            '_label -> "Available Players",
-            '_showConstraints -> false,
-            '_error -> initRosterForm("logo").error.map(_.withMessage("select players"))
-        )
-    </tbody>
-</table>
+@recruitAthleteCheckboxGroup(
+    initRosterForm("athletes"),
+    options = athleteList,
+    '_label -> "Available Players",
+    '_showConstraints -> false,
+    '_error -> initRosterForm("logo").error.map(_.withMessage("select players"))
+)

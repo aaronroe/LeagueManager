@@ -26,10 +26,18 @@ public class ChampionAffinity extends Model {
     }
 
     /**
-     * Gets the strength of the champion affinity.
+     * Gets the rounded strength of the champion affinity.
      * @return The strength of the champion affinity.
      */
-    public Double getStrength() {
+    public Long getRoundedStrength() {
+        return Math.round(strength);
+    }
+
+    /**
+     * Gets the precise strength of the champion affinity.
+     * @return The precise strength of the champion affinity.
+     */
+    public Double getExactStrength() {
         return strength;
     }
 

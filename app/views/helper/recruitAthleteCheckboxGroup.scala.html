@@ -19,7 +19,16 @@
 @(field: play.api.data.Field, options: Seq[Athlete], args: (Symbol,Any)*)(implicit handler: FieldConstructor, lang: play.api.i18n.Lang)
 
 @input(field, args:_*) { (id, name, value, htmlArgs) =>
-<span class="buttonset" id="@id">
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <td></td>
+        <td>Player Name</td>
+        <td>Solo-Queue Rating</td>
+        <td>Best Champions</td>
+    </tr>
+    </thead>
+    <tbody>
     @defining(field.indexes.map( i => field("[%s]".format(i)).value ).flatten.toSet) { values =>
         @for(athlete <- options) {
             <tr>
@@ -34,11 +43,12 @@
                 </td>
                 <td>
                     @for(champion <- athlete.getTopChampions(4)) {
-                        @championIconHelper(champion.getChampionName())
+                        @championIconHelper(champion.getChampionName()) <span class="label label-primary">@champion.getRoundedStrength()</span>
                     }
                 </td>
             </tr>
         }
     }
-</span>
+    </tbody>
+</table>
 }
