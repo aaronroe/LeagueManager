@@ -66,7 +66,7 @@ public class LaneAffinity extends Model {
      * Static method for encapsulating construction of a lane affinity
      * @param laneName The name of the lane.
      * @param strength The strength of the affinity with the lane.
-     * @return
+     * @return The newly created lane affinity.
      */
     public static LaneAffinity create(String laneName, Double strength) {
         LaneAffinity laneAffinity = new LaneAffinity(laneName, strength);
