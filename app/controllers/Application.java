@@ -83,7 +83,7 @@ public class Application extends Controller {
 
         Team team = Team.findTeamOf(localUser);
 
-        return ok(overview.render(team.name, team.logo));
+        return ok(overview.render(team));
 	}
 
     /**
@@ -100,7 +100,58 @@ public class Application extends Controller {
 
         Team team = Team.findTeamOf(localUser);
 
-        return ok(management.render(team.name, team.logo));
+        return ok(management.render(team));
+    }
+
+    /**
+     * Gets the game schedule view.
+     * @return The game schedule view. Redirect if there is something uninitialized.
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result schedule() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+            return redirect(routes.Application.index());
+        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return ok(schedule.render(team));
+    }
+
+    /**
+     * Gets the game roster view.
+     * @return The game roster view. Redirect if there is something uninitialized.
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result roster() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+            return redirect(routes.Application.index());
+        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return ok(roster.render(team));
+    }
+
+    /**
+     * Gets the game finances view.
+     * @return The game finances view. Redirect if there is something uninitialized.
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result finances() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+            return redirect(routes.Application.index());
+        }
+
+        Team team = Team.findTeamOf(localUser);
+
+        return ok(finances.render(team));
     }
 
 	@Restrict(@Group(Application.USER_ROLE))
