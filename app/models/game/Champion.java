@@ -9,14 +9,14 @@ public class Champion {
      * Constructor for a champion instance.
      * @param name The name of the champion we are initializing.
      */
-    public Champion(ChampionName name) {
+    public Champion(String name) {
         this.name = name;
     }
 
     /**
      * The identifying name of the champion.
      */
-    private ChampionName name;
+    private String name;
 
     /**
      * Checks whether or not the champion has the same identifying name.

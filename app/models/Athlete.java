@@ -4,7 +4,6 @@ import models.athlete.ChampionAffinity;
 import models.athlete.LaneAffinity;
 import models.athlete.SoloQueueRating;
 import models.game.ChampionHelper;
-import models.game.ChampionName;
 import play.db.ebean.Model;
 
 import javax.persistence.*;

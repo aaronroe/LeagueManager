@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Class that represents a (ChampionName, Value) affinity pair.
+ * Class that represents a (Champion Name, Value) affinity pair.
  */
 @Entity
 public class ChampionAffinity extends Model {
