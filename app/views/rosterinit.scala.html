@@ -1,8 +1,8 @@
-@(initRosterForm: Form[_], athleteList: List[Athlete], localTeam: Team)
+@(initRosterForm: Form[_], athleteList: List[Athlete], localTeam: Team, localGame: Game)
 
 @import helper._
 
-@gamebase("Roster Creation", localTeam.name, localTeam.logo, 0, 0) {
+@gamebase("Roster Creation", localTeam.name, localTeam.logo, localGame.money, 0, 0) {
 <div class="small-panel">
     <h1>Recruit Solo-Queue Players</h1>
     @helper.form(routes.Application.doRosterInit) {

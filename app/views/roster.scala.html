@@ -1,6 +1,6 @@
-@(team: Team)
+@(team: Team, game: Game)
 
-@gamebase("Roster", team.name, team.logo, 5, 3) {
+@gamebase("Roster", team.name, team.logo, game.money, 5, 3) {
 <div class="panel panel-default">
     <div class="panel-body">
         Hello World!

@@ -1,4 +1,4 @@
-@(title: String, teamName: String, logoName: String, numVisibleTabs: Integer, openTab: Integer)(content: Html)
+@(title: String, teamName: String, logoName: String, money: Integer, numVisibleTabs: Integer, openTab: Integer)(content: Html)
 
 @import helper._
 
@@ -30,6 +30,12 @@
                             @teamName
                         }
                     </li>
+                </ul>
+            }
+
+            @if(money != null) {
+                <ul class="nav navbar-nav">
+                    <li class="nav-text">Current Funds: $@money</li>
                 </ul>
             }
 

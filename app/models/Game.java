@@ -41,6 +41,11 @@ public class Game extends Model {
     public boolean isRosterInit;
 
     /**
+     * The amount of money that the user has in the game.
+     */
+    public int money;
+
+    /**
      * Finder for team.
      */
     public static Model.Finder<Long,Game> find = new Model.Finder<Long,Game>(Long.class, Game.class);
@@ -54,6 +59,8 @@ public class Game extends Model {
 
         this.isRosterInit = false;
         this.isTeamInit = false;
+
+        this.money = 500;
     }
 
     /**
