@@ -1,15 +1,12 @@
 package models;
 
-import models.athlete.ChampionAffinities;
+import models.athlete.ChampionAffinity;
 import models.athlete.SoloQueueRating;
+import models.game.ChampionName;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import java.util.List;
-import java.util.Random;
+import javax.persistence.*;
+import java.util.*;
 
 /**
  * Game Athlete entity.
@@ -43,8 +40,8 @@ public class Athlete extends Model {
     /**
      * The champion affinities the athlete has.
      */
-    @OneToOne
-    public ChampionAffinities championAffinities;
+    @ManyToMany
+    public List<ChampionAffinity> championAffinities = new ArrayList<ChampionAffinity>();
 
     /**
      * The name of the player.
@@ -101,9 +98,6 @@ public class Athlete extends Model {
 
         // init special attributes for the player.
         this.initRandomSpecialAttributes();
-
-        // init champion affinities with random values.
-        this.championAffinities = ChampionAffinities.create();
     }
 
     /**
@@ -193,6 +187,7 @@ public class Athlete extends Model {
      */
     public static Athlete create(String name, Long teamId, Game game, SoloQueueRating soloQueueRating) {
         Athlete athlete = new Athlete(name, Team.find.ref(teamId), game, soloQueueRating);
+        athlete.insertRandomAffinities();
         athlete.save();
         return athlete;
     }
@@ -205,8 +200,36 @@ public class Athlete extends Model {
      */
     public static Athlete create(String name, Game game, SoloQueueRating soloQueueRating) {
         Athlete athlete = new Athlete(name, null, game, soloQueueRating);
+        athlete.insertRandomAffinities();
         athlete.save();
         return athlete;
+    }
+
+    /**
+     * Initializes affinity map.
+     */
+    private void insertRandomAffinities() {
+        Random random = new Random();
+
+        for (ChampionName championName : ChampionName.values()) {
+            this.championAffinities.add(ChampionAffinity.create(championName.toString(), random.nextDouble() * 99));
+        }
+    }
+
+    /**
+     * Gets the top three champions for this set of champion affinities.
+     * @param numTop The number of champions to take from the top.
+     * @return The top three champions.
+     */
+    public List<ChampionAffinity> getTopChampions(int numTop) {
+        Collections.sort(this.championAffinities, new Comparator<ChampionAffinity>() {
+            @Override
+            public int compare(ChampionAffinity o1, ChampionAffinity o2) {
+                return o2.getStrength().compareTo(o1.getStrength());
+            }
+        });
+
+        return this.championAffinities.subList(0, numTop);
     }
 
 }

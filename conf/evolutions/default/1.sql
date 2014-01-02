@@ -8,7 +8,6 @@ create table athlete (
   team_id                   bigint,
   which_game_id             bigint,
   solo_queue_rating         integer,
-  champion_affinities_id    bigint,
   name                      varchar(255),
   base_reflexes             double,
   base_concentration        double,
@@ -24,9 +23,11 @@ create table athlete (
   constraint pk_athlete primary key (id))
 ;
 
-create table champion_affinities (
+create table champion_affinity (
   id                        bigint not null,
-  constraint pk_champion_affinities primary key (id))
+  champion_name             varchar(255),
+  strength                  double,
+  constraint pk_champion_affinity primary key (id))
 ;
 
 create table game (
@@ -91,6 +92,12 @@ create table user_permission (
 ;
 
 
+create table athlete_champion_affinity (
+  athlete_id                     bigint not null,
+  champion_affinity_id           bigint not null,
+  constraint pk_athlete_champion_affinity primary key (athlete_id, champion_affinity_id))
+;
+
 create table users_security_role (
   users_id                       bigint not null,
   security_role_id               bigint not null,
@@ -104,7 +111,7 @@ create table users_user_permission (
 ;
 create sequence athlete_seq;
 
-create sequence champion_affinities_seq;
+create sequence champion_affinity_seq;
 
 create sequence game_seq;
 
@@ -124,20 +131,22 @@ alter table athlete add constraint fk_athlete_team_1 foreign key (team_id) refer
 create index ix_athlete_team_1 on athlete (team_id);
 alter table athlete add constraint fk_athlete_whichGame_2 foreign key (which_game_id) references game (id) on delete restrict on update restrict;
 create index ix_athlete_whichGame_2 on athlete (which_game_id);
-alter table athlete add constraint fk_athlete_championAffinities_3 foreign key (champion_affinities_id) references champion_affinities (id) on delete restrict on update restrict;
-create index ix_athlete_championAffinities_3 on athlete (champion_affinities_id);
-alter table game add constraint fk_game_owner_4 foreign key (owner_id) references users (id) on delete restrict on update restrict;
-create index ix_game_owner_4 on game (owner_id);
-alter table game add constraint fk_game_userTeam_5 foreign key (user_team_id) references team (id) on delete restrict on update restrict;
-create index ix_game_userTeam_5 on game (user_team_id);
-alter table linked_account add constraint fk_linked_account_user_6 foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_linked_account_user_6 on linked_account (user_id);
-alter table team add constraint fk_team_whichGame_7 foreign key (which_game_id) references game (id) on delete restrict on update restrict;
-create index ix_team_whichGame_7 on team (which_game_id);
-alter table token_action add constraint fk_token_action_targetUser_8 foreign key (target_user_id) references users (id) on delete restrict on update restrict;
-create index ix_token_action_targetUser_8 on token_action (target_user_id);
+alter table game add constraint fk_game_owner_3 foreign key (owner_id) references users (id) on delete restrict on update restrict;
+create index ix_game_owner_3 on game (owner_id);
+alter table game add constraint fk_game_userTeam_4 foreign key (user_team_id) references team (id) on delete restrict on update restrict;
+create index ix_game_userTeam_4 on game (user_team_id);
+alter table linked_account add constraint fk_linked_account_user_5 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_linked_account_user_5 on linked_account (user_id);
+alter table team add constraint fk_team_whichGame_6 foreign key (which_game_id) references game (id) on delete restrict on update restrict;
+create index ix_team_whichGame_6 on team (which_game_id);
+alter table token_action add constraint fk_token_action_targetUser_7 foreign key (target_user_id) references users (id) on delete restrict on update restrict;
+create index ix_token_action_targetUser_7 on token_action (target_user_id);
 
 
+
+alter table athlete_champion_affinity add constraint fk_athlete_champion_affinity__01 foreign key (athlete_id) references athlete (id) on delete restrict on update restrict;
+
+alter table athlete_champion_affinity add constraint fk_athlete_champion_affinity__02 foreign key (champion_affinity_id) references champion_affinity (id) on delete restrict on update restrict;
 
 alter table users_security_role add constraint fk_users_security_role_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
 
@@ -153,7 +162,9 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists athlete;
 
-drop table if exists champion_affinities;
+drop table if exists athlete_champion_affinity;
+
+drop table if exists champion_affinity;
 
 drop table if exists game;
 
@@ -177,7 +188,7 @@ SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists athlete_seq;
 
-drop sequence if exists champion_affinities_seq;
+drop sequence if exists champion_affinity_seq;
 
 drop sequence if exists game_seq;
 
