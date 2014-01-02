@@ -49,16 +49,13 @@
                 <ul class="nav navbar-nav">
                     <li class="@("active ".when(openTab == 0))view-tab"><a href="@routes.Application.overview()">Overview</a></li>
                     @if(numVisibleTabs > 1) {
-                    <li class="@("active ".when(openTab == 1))view-tab"><a href="@routes.Application.management()">Management</a></li>
+                    <li class="@("active ".when(openTab == 1))view-tab"><a href="@routes.Application.schedule()">Schedule</a></li>
                     }
                     @if(numVisibleTabs > 2) {
-                    <li class="@("active ".when(openTab == 2))view-tab"><a href="@routes.Application.schedule()">Schedule</a></li>
+                    <li class="@("active ".when(openTab == 2))view-tab"><a href="@routes.Application.roster()">Roster</a></li>
                     }
                     @if(numVisibleTabs > 3) {
-                    <li class="@("active ".when(openTab == 3))view-tab"><a href="@routes.Application.roster()">Roster</a></li>
-                    }
-                    @if(numVisibleTabs > 4) {
-                    <li class="@("active ".when(openTab == 4))view-tab"><a href="@routes.Application.finances()">Finances</a></li>
+                    <li class="@("active ".when(openTab == 3))view-tab"><a href="@routes.Application.finances()">Finances</a></li>
                     }
                 </ul>
             </div>

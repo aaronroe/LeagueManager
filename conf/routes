@@ -7,8 +7,6 @@ GET     /                           controllers.Application.index
 
 GET     /overview                   controllers.Application.overview
 
-GET     /management                 controllers.Application.management
-
 GET     /schedule                   controllers.Application.schedule
 
 GET     /roster                     controllers.Application.roster

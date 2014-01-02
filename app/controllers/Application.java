@@ -87,23 +87,6 @@ public class Application extends Controller {
 	}
 
     /**
-     * Gets the game management view.
-     * @return The game management view. Redirect if there is something uninitialized.
-     */
-    @Restrict(@Group(Application.USER_ROLE))
-    public static Result management() {
-        final User localUser = getLocalUser(session());
-        Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || !localGame.isRosterInit) {
-            return redirect(routes.Application.index());
-        }
-
-        Team team = Team.findTeamOf(localUser);
-
-        return ok(management.render(team, localGame));
-    }
-
-    /**
      * Gets the game schedule view.
      * @return The game schedule view. Redirect if there is something uninitialized.
      */
