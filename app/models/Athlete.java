@@ -3,6 +3,7 @@ package models;
 import models.athlete.ChampionAffinity;
 import models.athlete.LaneAffinity;
 import models.athlete.SoloQueueRating;
+import models.game.ChampionHelper;
 import models.game.ChampionName;
 import play.db.ebean.Model;
 
@@ -218,8 +219,8 @@ public class Athlete extends Model {
     private void insertRandomAffinities() {
         Random random = new Random();
 
-        for (ChampionName championName : ChampionName.values()) {
-            this.championAffinities.add(ChampionAffinity.create(championName.toString(), random.nextDouble() * 99));
+        for (String championName : ChampionHelper.singleton.getAllChampions()) {
+            this.championAffinities.add(ChampionAffinity.create(championName, random.nextDouble() * 99));
         }
     }
 
