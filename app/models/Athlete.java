@@ -114,7 +114,7 @@ public class Athlete extends Model {
      * @param max The maximum stat value.
      */
     private void initRandomBaseAttributes(int min, int max) {
-        Random random = new Random();
+        Random random = new Random(System.currentTimeMillis());
 
         this.baseReflexes = random.nextInt(max-min) + min;
         this.baseConcentration = random.nextInt(max-min) + min;
@@ -129,7 +129,7 @@ public class Athlete extends Model {
      * Inits the special attributes randomly.
      */
     private void initRandomSpecialAttributes() {
-        Random random = new Random();
+        Random random = new Random(System.currentTimeMillis());
         this.potential = random.nextDouble();
         this.luck = random.nextInt(10);
         this.experience = random.nextInt(99);
@@ -141,6 +141,16 @@ public class Athlete extends Model {
      */
     public boolean isOnTeam() {
         return this.team != null;
+    }
+
+    /**
+     * Method for figuring out if a player already exists in the game.
+     * @param name The name to check.
+     * @param game The game to check.
+     * @return True if the player exists in this game, false otherwise.
+     */
+    public static boolean existsForGame(String name, Game game) {
+        return Athlete.find.where().eq("whichGame", game).eq("name", name).findUnique() != null;
     }
 
     /**
@@ -217,7 +227,7 @@ public class Athlete extends Model {
      * Initializes affinity map.
      */
     private void insertRandomAffinities() {
-        Random random = new Random();
+        Random random = new Random(System.currentTimeMillis());
 
         // init random champ affinities.
         for (String championName : ChampionHelper.singleton.getAllChampions()) {
