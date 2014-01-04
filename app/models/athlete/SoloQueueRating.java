@@ -31,4 +31,12 @@ public enum SoloQueueRating {
     public String toString() {
         return this.textRepresentation;
     }
+
+    /**
+     * Gets the name of the image for the solo queue rating.
+     * @return The name of the image for the division.
+     */
+    public String getImageName() {
+        return this.textRepresentation.split(" ")[0].toLowerCase() + ".png";
+    }
 }

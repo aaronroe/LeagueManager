@@ -11,13 +11,16 @@ html * {
 }
 
 /**
- * Logo styles
+ * Image styles
  */
 .logo-small {
     width: 38px;
 }
 .logo-medium {
     width: 60px;
+}
+.division-small {
+    width: 25px;
 }
 
 /**

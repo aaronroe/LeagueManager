@@ -40,7 +40,7 @@
                     @athlete.name
                 </td>
                 <td>
-                    @athlete.soloQueueRating
+                    @divisionImageHelper(athlete.soloQueueRating.getImageName(), "small") @athlete.soloQueueRating
                 </td>
                 <td>
                     @for(champion <- athlete.getTopChampions(3)) {
