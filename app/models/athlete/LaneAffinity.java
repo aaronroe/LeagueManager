@@ -28,6 +28,14 @@ public class LaneAffinity extends Model {
     private Double strength;
 
     /**
+     * Gets the name of the lane for this lane affinity.
+     * @return The name of the lane for this lane affinity.
+     */
+    public String getLaneName() {
+        return this.laneName;
+    }
+
+    /**
      * Gets the rounded strength of the lane affinity.
      * @return The strength of the lane affinity.
      */

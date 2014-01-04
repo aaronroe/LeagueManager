@@ -4,6 +4,7 @@ import models.athlete.ChampionAffinity;
 import models.athlete.LaneAffinity;
 import models.athlete.SoloQueueRating;
 import models.game.ChampionHelper;
+import models.game.LaneHelper;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -218,15 +219,21 @@ public class Athlete extends Model {
     private void insertRandomAffinities() {
         Random random = new Random();
 
+        // init random champ affinities.
         for (String championName : ChampionHelper.singleton.getAllChampions()) {
             this.championAffinities.add(ChampionAffinity.create(championName, random.nextDouble() * 99));
+        }
+
+        // init random lane affinities.
+        for (String laneName : LaneHelper.singleton.getAllLanes()) {
+            this.laneAffinities.add(LaneAffinity.create(laneName, random.nextDouble() * 99));
         }
     }
 
     /**
-     * Gets the top three champions for this set of champion affinities.
+     * Gets the top three champions for this athlete.
      * @param numTop The number of champions to take from the top.
-     * @return The top three champions.
+     * @return A list of champ affinities, according to the best champions for this athlete.
      */
     public List<ChampionAffinity> getTopChampions(int numTop) {
         Collections.sort(this.championAffinities, new Comparator<ChampionAffinity>() {
@@ -237,6 +244,22 @@ public class Athlete extends Model {
         });
 
         return this.championAffinities.subList(0, numTop);
+    }
+
+    /**
+     * Gets the top three lanes for this athlete..
+     * @param numTop The number of lanes to take from the top.
+     * @return A list of lane affinities, according to the best lanes for this athlete.
+     */
+    public List<LaneAffinity> getTopLanes(int numTop) {
+        Collections.sort(this.laneAffinities, new Comparator<LaneAffinity>() {
+            @Override
+            public int compare(LaneAffinity o1, LaneAffinity o2) {
+                return o2.getExactStrength().compareTo(o1.getExactStrength());
+            }
+        });
+
+        return this.laneAffinities.subList(0, numTop);
     }
 
 }

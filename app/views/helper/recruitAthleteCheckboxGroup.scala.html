@@ -26,6 +26,7 @@
         <td>Player Name</td>
         <td>Solo-Queue Rating</td>
         <td>Best Champions</td>
+        <td>Best Lanes</td>
     </tr>
     </thead>
     <tbody>
@@ -44,6 +45,11 @@
                 <td>
                     @for(champion <- athlete.getTopChampions(4)) {
                         @championIconHelper(champion.getChampionName()) <span class="label label-primary">@champion.getRoundedStrength()</span>
+                    }
+                </td>
+                <td>
+                    @for(lane <- athlete.getTopLanes(3)) {
+                        @lane.getLaneName() @lane.getRoundedStrength()
                     }
                 </td>
             </tr>
