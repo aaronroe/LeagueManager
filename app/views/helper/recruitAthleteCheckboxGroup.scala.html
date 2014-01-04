@@ -49,7 +49,7 @@
                 </td>
                 <td>
                     @for(lane <- athlete.getTopLanes(3)) {
-                        @lane.getLaneName() @lane.getRoundedStrength()
+                        @lane.getLaneName() <span class="label label-primary">@lane.getRoundedStrength()</span>
                     }
                 </td>
             </tr>
