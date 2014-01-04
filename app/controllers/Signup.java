@@ -45,7 +45,7 @@ public class Signup extends Controller {
 
 	public static Result unverified() {
 		com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-        flash(Application.FLASH_MESSAGE_KEY, "You're almost done! Please check your email to verify your account.");
+        flash(Application.FLASH_MESSAGE_KEY, "You need to verify your account! Please check your email for the verification link.");
         return ok(login.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
 //		return ok(unverified.render());
 	}
