@@ -43,12 +43,12 @@
                     @athlete.soloQueueRating
                 </td>
                 <td>
-                    @for(champion <- athlete.getTopChampions(4)) {
+                    @for(champion <- athlete.getTopChampions(3)) {
                         @championIconHelper(champion.getChampionName()) <span class="label label-primary">@champion.getRoundedStrength()</span>
                     }
                 </td>
                 <td>
-                    @for(lane <- athlete.getTopLanes(3)) {
+                    @for(lane <- athlete.getTopLanes(2)) {
                         @lane.getLaneName() <span class="label label-primary">@lane.getRoundedStrength()</span>
                     }
                 </td>
