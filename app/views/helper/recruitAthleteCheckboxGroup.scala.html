@@ -26,7 +26,7 @@
         <td>Player Name</td>
         <td>Solo-Queue Rating</td>
         <td>Best Champions</td>
-        <td>Best Lanes</td>
+        <td>Lane</td>
     </tr>
     </thead>
     <tbody>
@@ -48,9 +48,7 @@
                     }
                 </td>
                 <td>
-                    @for(lane <- athlete.getTopLanes(2)) {
-                        @lane.getLaneName() <span class="label label-primary">@lane.getRoundedStrength()</span>
-                    }
+                    @athlete.getTopLanes(1).get(0).getLaneName()
                 </td>
             </tr>
         }
