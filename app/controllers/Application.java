@@ -2,17 +2,23 @@ package controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Athlete;
 import models.Game;
 import models.Team;
 import models.User;
 import models.athlete.AthleteFactory;
+import models.athlete.ChampionAffinity;
 import models.athlete.SoloQueueRating;
 import models.forms.InitialRoster;
 import models.forms.InitialTeam;
 import play.Routes;
 import play.data.Form;
+import play.libs.Json;
 import play.mvc.*;
 import play.mvc.Http.Session;
 import play.mvc.Result;
@@ -326,6 +332,48 @@ public class Application extends Controller {
             // let play-authenticate handle signup.
             return UsernamePasswordAuthProvider.handleSignup(ctx());
         }
+    }
+
+    /**
+     * Gets a JSON of all recruitable athletes.
+     * @return The JSON of all recruitable athletes.
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result jsonRecruitables() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+
+        ArrayNode resultList = Json.newObject().arrayNode();
+
+        // for each recruitable athlete, build the json.
+        for (Athlete recruitable : Athlete.findRecruitableAthletes(localGame)) {
+            ObjectNode singleAthlete = Json.newObject();
+
+            // name
+            singleAthlete.put("name", recruitable.name);
+
+            // solo queue ranking
+            singleAthlete.put("division", recruitable.soloQueueRating.toString());
+
+            // create the list of top champ affinities.
+            ArrayNode champAffList = Json.newObject().arrayNode();
+            for (ChampionAffinity affinity : recruitable.getTopChampions(3)) {
+                ObjectNode singleChampAff = Json.newObject();
+                singleChampAff.put("name", affinity.getChampionName());
+                singleChampAff.put("strength", affinity.getRoundedStrength());
+
+                champAffList.add(singleChampAff);
+            }
+            singleAthlete.put("champion_affinities", champAffList);
+
+            // lane
+            singleAthlete.put("lane", recruitable.getTopLanes(1).get(0).getLaneName());
+
+            resultList.add(singleAthlete);
+        }
+
+        return ok(resultList);
     }
 
 	public static Result jsRoutes() {
