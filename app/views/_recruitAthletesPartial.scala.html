@@ -2,7 +2,7 @@
 
 @import helper._
 
-<table class="table table-hover">
+<table class="table">
     <thead>
     <tr>
         <td></td>
@@ -13,19 +13,19 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="athlete in recruitableAthletes">
+    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="setSelectedAthlete(athlete)" ng-class="{selected: athlete === selectedAthlete}">
         <td>
-            <input type="checkbox" name="{{athlete.name}}">
+            <input ng-model="athlete.selected" type="checkbox" name="{{athlete.name}}">
         </td>
         <td>
             {{athlete.name}}
         </td>
         <td>
-            <img class="division-small" src="{{athlete.division_image}}" /> {{athlete.division}}
+            <img class="division-small" ng-src="{{athlete.division_image}}" /> {{athlete.division}}
         </td>
         <td>
             <span ng-repeat="topChampAff in athlete.champion_affinities">
-                <img class="champion" src="{{topChampAff.image}}" /> <span class="label label-primary">{{topChampAff.strength}}</span>
+                <img class="champion" ng-src="{{topChampAff.image}}" /> <span class="label label-primary">{{topChampAff.strength}}</span>
             </span>
         </td>
         <td>

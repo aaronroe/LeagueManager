@@ -101,6 +101,14 @@ input[type=radio]:checked + img{
  * Table styles
  */
 
+.selected {
+    background-color: #e8e8e8;
+}
+
+.row-highlight:hover {
+    background-color: #d0d0d0;
+}
+
 thead {
     font-weight: bold;
 }
