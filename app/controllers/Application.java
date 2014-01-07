@@ -355,6 +355,7 @@ public class Application extends Controller {
 
             // solo queue ranking
             singleAthlete.put("division", recruitable.soloQueueRating.toString());
+            singleAthlete.put("division_image", recruitable.soloQueueRating.getImageName());
 
             // create the list of top champ affinities.
             ArrayNode champAffList = Json.newObject().arrayNode();
@@ -362,6 +363,7 @@ public class Application extends Controller {
                 ObjectNode singleChampAff = Json.newObject();
                 singleChampAff.put("name", affinity.getChampionName());
                 singleChampAff.put("strength", affinity.getRoundedStrength());
+                singleChampAff.put("image", affinity.getChampionIcon());
 
                 champAffList.add(singleChampAff);
             }

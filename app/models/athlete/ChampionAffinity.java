@@ -1,5 +1,6 @@
 package models.athlete;
 
+import controllers.Assets;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -33,6 +34,14 @@ public class ChampionAffinity extends Model {
      */
     public String getChampionName() {
         return championName;
+    }
+
+    /**
+     * Gets the name of the champion icon image.
+     * @return The name of the champion icon image.
+     */
+    public String getChampionIcon() {
+        return "/assets/images/champions/icon_" + this.getChampionName().toLowerCase() + ".png";
     }
 
     /**

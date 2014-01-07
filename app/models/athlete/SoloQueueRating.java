@@ -37,6 +37,6 @@ public enum SoloQueueRating {
      * @return The name of the image for the division.
      */
     public String getImageName() {
-        return this.textRepresentation.split(" ")[0].toLowerCase() + ".png";
+        return "/assets/images/divisions/" + this.textRepresentation.split(" ")[0].toLowerCase() + ".png";
     }
 }
