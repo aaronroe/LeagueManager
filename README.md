@@ -12,6 +12,5 @@ Installation
 ------------
 1. Clone repository.
 2. Install [Play](http://www.playframework.com/documentation/2.2.1/Installing).
-3. Configure `LeagueManager/conf/play-authenticate/smtp.conf` with an email address and a password.
-4. Execute `play run` in the cloned directory.
-5. Open up browser to `localhost:9000`.
+3. Execute `play run` in the cloned directory.
+4. Open up browser to `localhost:9000`.
