@@ -13,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="setSelectedAthlete(athlete)" ng-class="{selected: athlete === selectedAthlete}">
+    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{selected: athlete.selected === true}">
         <td>
             <input ng-model="athlete.selected" type="checkbox" name="{{athlete.name}}">
         </td>
