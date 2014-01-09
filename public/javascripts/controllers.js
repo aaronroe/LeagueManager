@@ -25,6 +25,18 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
         $scope.currentPage = page;
     }
 
+    // function for pagination that preserves checkboxes across pages.
+    // not the most elegant solution, but it works.
+    $scope.isVisible = function(athlete) {
+        var index = $scope.recruitableAthletes.indexOf(athlete);
+        if (index > $scope.currentPage * $scope.resultsPerPage &&
+            index < ($scope.currentPage + 1) * $scope.resultsPerPage) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     $scope.toggleAthleteSelected = function(athlete) {
         if (athlete.selected == false) {

@@ -96,6 +96,9 @@ input[type=radio]:checked + img{
 .player-checkbox > input {
     display: none;
 }
+.hidden {
+    display: none;
+}
 
 /**
  * Table styles
