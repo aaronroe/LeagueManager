@@ -350,6 +350,9 @@ public class Application extends Controller {
         for (Athlete recruitable : Athlete.findRecruitableAthletes(localGame)) {
             ObjectNode singleAthlete = Json.newObject();
 
+            // id
+            singleAthlete.put("id", recruitable.id);
+
             // name
             singleAthlete.put("name", recruitable.name);
 

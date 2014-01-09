@@ -2,6 +2,12 @@
 
 @import helper._
 
+@input(initRosterForm("athletes"),
+        '_showConstraints -> false,
+        '_label -> "",
+        '_showErrors -> false
+) { (id, name, value, args) =>
+
 <table class="table">
     <thead>
     <tr>
@@ -15,7 +21,7 @@
     <tbody>
     <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{selected: athlete.selected === true}">
         <td>
-            <input ng-model="athlete.selected" type="checkbox" name="{{athlete.name}}">
+            <input ng-model="athlete.selected" type="checkbox" name="@{name + "[]"}" id="@(id)_{{athlete.id}}" value="{{athlete.id}}" @toHtmlArgs(args)>
         </td>
         <td>
             {{athlete.name}}
@@ -34,3 +40,4 @@
     </tr>
     </tbody>
 </table>
+}

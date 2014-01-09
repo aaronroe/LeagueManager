@@ -8,6 +8,10 @@
     @helper.form(routes.Application.doRosterInit) {
         @if(initRosterForm.hasGlobalErrors) {
             <span class="label label-danger">@initRosterForm.globalError.message</span>
+        } else {
+            @if(initRosterForm.hasErrors) {
+                <span class="label label-danger">You have not selected any players.</span>
+            }
         }
 
         @_recruitAthletesPartial(initRosterForm, athleteList, localTeam)
