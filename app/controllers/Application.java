@@ -239,13 +239,7 @@ public class Application extends Controller {
             Team skTelecomT1K = Team.create(localGame, "SK Telecom T1 K", "sktk.png");
 
             // initialize a pool of athletes now!
-            AthleteFactory.singleton.generateAthletes(localGame, 10);
-//            Athlete.create("HotShotGG", localGame, SoloQueueRating.DiamondI);
-//            Athlete.create("NyJacky", localGame, SoloQueueRating.DiamondI);
-//            Athlete.create("bigfatjiji", localGame, SoloQueueRating.DiamondI);
-//            Athlete.create("Chaox", localGame, SoloQueueRating.Challenger);
-//            Athlete.create("PhantomL0rd", localGame, SoloQueueRating.DiamondI);
-//            Athlete.create("Faker", skTelecomT1K.id, localGame, SoloQueueRating.Challenger);
+            AthleteFactory.singleton.generateAthletes(localGame, 100);
 
             localGame.setTeamInit(true);
 

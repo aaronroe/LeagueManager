@@ -8,7 +8,7 @@
         '_showErrors -> false
 ) { (id, name, value, args) =>
 
-<table class="table">
+<table class="table roster-init">
     <thead>
     <tr>
         <td></td>
@@ -19,7 +19,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{selected: athlete.selected === true}">
+    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes | startFrom:currentPage * resultsPerPage | limitTo:resultsPerPage" ng-click="toggleAthleteSelected(athlete)" ng-class="{selected: athlete.selected === true}">
         <td>
             <input ng-model="athlete.selected" type="checkbox" name="@{name + "[]"}" id="@(id)_{{athlete.id}}" value="{{athlete.id}}" @toHtmlArgs(args)>
         </td>
@@ -40,4 +40,10 @@
     </tr>
     </tbody>
 </table>
+
+<ul class="pagination">
+    <li><a href="" ng-click="showPreviousPage()" id="back">&laquo;</a></li>
+    <li ng-repeat="page in pages" ng-click="showPage(page)" ng-class="{active: currentPage === page}"><a href="">{{page + 1}}</a></li>
+    <li><a href="" ng-click="showNextPage()">&raquo;</a></li>
+</ul>
 }

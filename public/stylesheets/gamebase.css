@@ -100,6 +100,9 @@ input[type=radio]:checked + img{
 /**
  * Table styles
  */
+.roster-init {
+    margin: 0 auto;
+}
 
 .selected {
     background-color: #e8e8e8;

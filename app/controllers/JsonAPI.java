@@ -14,6 +14,8 @@ import play.mvc.Result;
 import be.objectify.deadbolt.java.actions.Group;
 import be.objectify.deadbolt.java.actions.Restrict;
 
+import java.util.ArrayList;
+
 /**
  * Controller that exposes a JSON API.
  */
@@ -25,7 +27,7 @@ public class JsonAPI extends Controller {
      */
     @Restrict(@Group(Application.USER_ROLE))
     @BodyParser.Of(BodyParser.Json.class)
-    public static Result jsonRecruitables() {
+    public static Result jsonRecruitables(Integer page) {
         final User localUser = Application.getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
 

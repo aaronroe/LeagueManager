@@ -231,7 +231,7 @@ public class Athlete extends Model {
 
         // init random champ affinities.
         for (String championName : ChampionHelper.singleton.getAllChampions()) {
-            this.championAffinities.add(ChampionAffinity.create(championName, random.nextDouble() * 99));
+            this.championAffinities.add(ChampionAffinity.create(championName, random.nextDouble() * 99 * random.nextDouble()));
         }
 
         // init random lane affinities.

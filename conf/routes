@@ -15,7 +15,7 @@ GET     /roster/recruit             controllers.Application.rosterRecruit
 GET     /finances                   controllers.Application.finances
 
 # JSON API
-GET     /athlete/recruitable.json   controllers.JsonAPI.jsonRecruitables
+GET     /athlete/recruitable.json   controllers.JsonAPI.jsonRecruitables(page: Integer ?= 0)
 
 GET     /assets/javascript/routes.js    controllers.Application.jsRoutes
 
