@@ -12,7 +12,9 @@ Installation
 ------------
 1. Clone repository.
 2. Install [Play](http://www.playframework.com/documentation/2.2.1/Installing).
-3. Execute `play run` in the cloned directory.
-4. Open up browser to `localhost:9000`.
+3. Install [Bower](http://bower.io).
+4. Get dependencies by going to `/public/` and executing `bower install`.
+5. Execute `play run` in the top LeagueManager directory.
+6. Open up browser to `localhost:9000`.
 
 Note that a real email address is not used for verification, so you should check the play terminal for the email verification link.
