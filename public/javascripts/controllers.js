@@ -1,4 +1,7 @@
-var lmApp = angular.module('lmApp', []);
+var lmApp = angular.module('lmApp', ['ui.calendar']);
+
+lmApp.controller('OverviewCtrl', function($scope) {
+});
 
 lmApp.controller('RosterInitCtrl', function($scope, $http) {
 
