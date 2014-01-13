@@ -1,6 +1,24 @@
-var lmApp = angular.module('lmApp', ['ui.calendar']);
+var lmApp = angular.module('lmApp', ['ui.calendar', 'ui.bootstrap']);
 
 lmApp.controller('OverviewCtrl', function($scope) {
+    // array that contains events that are displayed on the calendar.
+    $scope.events = [];
+
+    // config object that contains calendar.
+    $scope.uiConfig = {
+      calendar:{
+        height: 450,
+        editable: true,
+        header:{
+          left: 'title',
+          center: '',
+          right: 'today prev,next'
+        }
+      }
+    };
+
+    // The sources that contain events to draw.
+    $scope.eventSources = [$scope.events];
 });
 
 lmApp.controller('RosterInitCtrl', function($scope, $http) {

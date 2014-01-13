@@ -1,9 +1,9 @@
 @(team: Team, game: Game)
 
 @gamebase("Overview", team.name, team.logo, game.money, 4, 0) {
-    <div class="panel panel-default">
+    <div ng-controller="OverviewCtrl" class="panel panel-default">
         <div class="panel-body">
-            Hello World!
+            <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
     </div>
 }

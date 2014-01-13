@@ -4,6 +4,7 @@
   "dependencies": {
     "angular-ui-calendar": "latest",
     "angular": "latest",
-    "bootstrap": "latest"
+    "bootstrap": "latest",
+    "angular-bootstrap": "latest"
   }
 }
