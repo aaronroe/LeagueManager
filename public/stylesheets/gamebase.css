@@ -66,9 +66,18 @@ html * {
 /**
  * Game panel elements.
  */
-.small-panel {
+.panel-small {
     margin: 1% 10% 0;
     width: 80%;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.panel-large {
+    margin: 1% 5% 0;
+    width: 90%;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
