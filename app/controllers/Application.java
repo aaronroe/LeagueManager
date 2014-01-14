@@ -90,7 +90,7 @@ public class Application extends Controller {
 
         Team team = Team.findTeamOf(localUser);
 
-        return ok(overview.render(team, localGame));
+        return ok(overview.render(team, localGame, localGame.date));
 	}
 
     /**

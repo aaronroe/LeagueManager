@@ -1,7 +1,7 @@
-@(team: Team, game: Game)
+@(team: Team, game: Game, date: Long)
 
 @gamebase("Overview", team.name, team.logo, game.money, 4, 0) {
-    <div ng-controller="OverviewCtrl" class="panel-large">
+    <div ng-init="initializeDate(@date)" ng-controller="OverviewCtrl" class="panel-large">
         <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
     </div>
 }
