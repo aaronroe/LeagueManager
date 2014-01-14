@@ -111,8 +111,11 @@ lmApp.filter('startFrom', function() {
  */
 Date.prototype.isInSameWeekAs = function(dateToCompare){
     var thisDate = new Date(+this);
-    dateToCompare.setHours(0,0,0);
-    thisDate.setHours(0,0,0);
-    var beginningOfWeek = dateToCompare.getDate() - dateToCompare.getDay();
-    return thisDate.getDate() >= beginningOfWeek && thisDate.getDate() < beginningOfWeek + 7;
+
+    // put into dawn of day for timezone of client.
+    dateToCompare.setHours(0,0,0,0);
+    thisDate.setHours(0,0,0,0);
+
+    var beginningOfWeek = dateToCompare.getTime() - dateToCompare.getDay() * 1000 * 60 * 60 * 24;
+    return thisDate.getTime() >= beginningOfWeek && thisDate.getTime() < beginningOfWeek + 7 * 1000 * 60 * 60 * 24;
 };
