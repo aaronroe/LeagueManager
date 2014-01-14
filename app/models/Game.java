@@ -3,6 +3,9 @@ package models;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Class that represents a game entity.
@@ -45,6 +48,11 @@ public class Game extends Model {
     public int money;
 
     /**
+     * The current date in the game.
+     */
+    public long date;
+
+    /**
      * Finder for team.
      */
     public static Model.Finder<Long,Game> find = new Model.Finder<Long,Game>(Long.class, Game.class);
@@ -60,6 +68,11 @@ public class Game extends Model {
         this.isTeamInit = false;
 
         this.money = 500;
+
+        // initialize the date.
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.set(2013, 10, 5);
+        this.date = cal.getTimeInMillis();
     }
 
     /**
