@@ -116,7 +116,7 @@ input[type=radio]:checked + img{
     margin: 0 auto;
 }
 
-.selected {
+.athlete-selected {
     background-color: #e8e8e8;
 }
 

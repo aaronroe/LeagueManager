@@ -19,7 +19,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{hidden: !isVisible(athlete), selected: athlete.selected === true}">
+    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{hidden: !isVisible(athlete), athlete-selected: athlete.selected === true}">
         <td>
             <input ng-model="athlete.selected" type="checkbox" name="@{name + "[]"}" id="@(id)_{{athlete.id}}" value="{{athlete.id}}" @toHtmlArgs(args)>
         </td>
