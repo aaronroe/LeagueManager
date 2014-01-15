@@ -1,7 +1,6 @@
 var lmApp = angular.module('lmApp', ['ui.calendar', 'ui.bootstrap']);
 
 lmApp.controller('OverviewCtrl', function($scope) {
-
     /**
      * Initializes the current date.
      */
@@ -9,6 +8,13 @@ lmApp.controller('OverviewCtrl', function($scope) {
         $scope.currentDate = new Date(timestamp);
         $scope.currentDate.setHours(0,0,0,0);
     }
+    /**
+     * Watch so that focus stays on current date. Otherwise every time the
+     * calendar is manipulated, it will go to "today".
+     */
+    $scope.$watch('overview', function() {
+        $scope.overview.fullCalendar('gotoDate', $scope.currentDate);
+    });
     /**
      * Function that highlights the current week.
      */

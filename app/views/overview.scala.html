@@ -2,6 +2,6 @@
 
 @gamebase("Overview", team.name, team.logo, game.money, 4, 0) {
     <div ng-init="initializeDate(@date)" ng-controller="OverviewCtrl" class="panel-large">
-        <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+        <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="overview" ></div>
     </div>
 }
