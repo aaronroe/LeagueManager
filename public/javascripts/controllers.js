@@ -1,8 +1,10 @@
 var lmApp = angular.module('lmApp', ['ui.calendar', 'ui.bootstrap']);
 
 lmApp.controller('OverviewCtrl', function($scope) {
-    // dummy init for the current week.
-//    $scope.currentDate = new Date();
+
+    /**
+     * Initializes the current date.
+     */
     $scope.initializeDate = function(timestamp) {
         $scope.currentDate = new Date(timestamp);
         $scope.currentDate.setHours(0,0,0,0);
@@ -119,12 +121,15 @@ Date.prototype.isInSameWeekAs = function(dateToCompare){
     dateToCompare.setHours(0,0,0,0);
     thisDate.setHours(0,0,0,0);
 
-    var beginningOfWeek = dateToCompare.getTime() - dateToCompare.getDay() * 1000 * 60 * 60 * 24;
+    // get the beginning of the week.
+    var beginningOfWeek = new Date(dateToCompare.getTime());
+    beginningOfWeek.setDate(beginningOfWeek.getDate() - beginningOfWeek.getDay());
+    beginningOfWeek.setHours(0,0,0,0);
 
-    // get the beginning date and make sure it is zero'ed out.
-    var beginningDate = new Date(beginningOfWeek);
-    beginningDate.setHours(0,0,0,0);
-    beginningOfWeek = beginningDate.getTime();
+    // get the end of the week.
+    var endOfWeek = new Date(beginningOfWeek.getTime());
+    endOfWeek.setDate(beginningOfWeek.getDate() + 6);
+    endOfWeek.setHours(0,0,0,0);
 
-    return thisDate.getTime() >= beginningOfWeek && thisDate.getTime() < beginningOfWeek + 7 * 1000 * 60 * 60 * 24;
+    return thisDate.getTime() >= beginningOfWeek.getTime() && thisDate.getTime() <= endOfWeek.getTime();
 };
