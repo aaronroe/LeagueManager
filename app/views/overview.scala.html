@@ -2,6 +2,9 @@
 
 @gamebase("Overview", team.name, team.logo, game.money, 4, 0) {
     <div ng-init="initializeDate(@date)" ng-controller="OverviewCtrl" class="panel-large">
+        <div class="overview-ctrl">
+            <button ng-click="advanceWeek()" type="button" class="btn btn-success">Go to Next Week</button>
+        </div>
         <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="overview" ></div>
     </div>
 }

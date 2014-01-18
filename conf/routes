@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index
 
 GET     /overview                   controllers.Application.overview
+GET     /overview/advanceweek       controllers.Application.doAdvanceWeek
 
 GET     /schedule                   controllers.Application.schedule
 

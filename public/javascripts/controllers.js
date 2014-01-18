@@ -1,6 +1,6 @@
 var lmApp = angular.module('lmApp', ['ui.calendar', 'ui.bootstrap']);
 
-lmApp.controller('OverviewCtrl', function($scope) {
+lmApp.controller('OverviewCtrl', function($scope, $window) {
     /**
      * Initializes the current date.
      */
@@ -43,6 +43,13 @@ lmApp.controller('OverviewCtrl', function($scope) {
 
     // The sources that contain events to draw.
     $scope.eventSources = [$scope.events];
+
+    /**
+     * Action to take when the advance week button is clicked.
+     */
+    $scope.advanceWeek = function() {
+        $window.location.href = '/overview/advanceweek';
+    };
 });
 
 lmApp.controller('RosterInitCtrl', function($scope, $http) {

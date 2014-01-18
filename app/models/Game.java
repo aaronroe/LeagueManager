@@ -127,4 +127,20 @@ public class Game extends Model {
         return userTeam;
     }
 
+    /**
+     * Advances the Game date a week.
+     */
+    public void advanceWeek() {
+        // force the long into java's date libraries, so it will handle annoyances for us.
+        Date currentDate = new Date(this.date);
+        GregorianCalendar calendarDate = new GregorianCalendar();
+        calendarDate.setTime(currentDate);
+
+        // add seven days
+        calendarDate.add(Calendar.DATE, 7);
+
+        this.date = calendarDate.getTimeInMillis();
+        this.save();
+    }
+
 }

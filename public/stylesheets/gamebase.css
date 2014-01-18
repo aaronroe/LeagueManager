@@ -134,3 +134,10 @@ thead {
 .selected-week {
     background-color: #e8e8e8;
 }
+
+/**
+ * Overview
+ */
+.overview-ctrl {
+    text-align: center;
+}

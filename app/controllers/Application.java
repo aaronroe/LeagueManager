@@ -328,6 +328,23 @@ public class Application extends Controller {
         }
     }
 
+    /**
+     * Performs the initialization of a roster.
+     * @return The result of the roster init form submission..
+     */
+    @Restrict(@Group(Application.USER_ROLE))
+    public static Result doAdvanceWeek() {
+        final User localUser = getLocalUser(session());
+        Game localGame = Game.findGameOf(localUser);
+        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+            return redirect(routes.Application.index());
+        }
+
+        localGame.advanceWeek();
+
+        return redirect(routes.Application.overview());
+    }
+
 	public static Result jsRoutes() {
 		return ok(
 				Routes.javascriptRouter("jsRoutes",
