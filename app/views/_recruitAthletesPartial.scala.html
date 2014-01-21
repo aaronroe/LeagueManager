@@ -41,6 +41,9 @@
     </tbody>
 </table>
 
+
+<h2 class="loading-text text-center" ng-hide="recruitableAthletes !== undefined"><i class="glyphicon glyphicon-download"></i> Loading</h2>
+
 <ul class="pagination">
     <li><a href="" ng-click="showPreviousPage()" id="back">&laquo;</a></li>
     <li ng-repeat="page in pages" ng-click="showPage(page)" ng-class="{active: currentPage === page}"><a href="">{{page + 1}}</a></li>
