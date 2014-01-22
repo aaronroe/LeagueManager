@@ -141,3 +141,16 @@ thead {
 .overview-ctrl {
     text-align: center;
 }
+
+.overview-element {
+    padding: 0 0 20px 0;
+}
+
+.overview-athlete-item {
+    width: 49%;
+    padding: 15px 0 0 0 !important;
+}
+
+.overview-athlete-image {
+    padding: 0 20px;
+}

@@ -1,10 +1,23 @@
 @(team: Team, game: Game, date: Long)
 
 @gamebase("Overview", team.name, team.logo, game.money, 4, 0) {
-    <div ng-init="initializeDate(@date)" ng-controller="OverviewCtrl" class="panel-large">
-        <div class="overview-ctrl">
-            <button ng-click="advanceWeek()" type="button" class="btn btn-success">Go to Next Week</button>
+    <div class="panel-large">
+        <div ng-init="initializeDate(@date)" ng-controller="OverviewCtrl" class="overview-element">
+            <div class="overview-ctrl">
+                <button ng-click="advanceWeek()" type="button" class="btn btn-success">Go to Next Week</button>
+            </div>
+            <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="overview" ></div>
         </div>
-        <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="overview" ></div>
+
+        <div class="overview-element">
+            <h2>Player Overview</h2>
+            <ul class="list-unstyled list-inline">
+                @for(teamMember <- Athlete.findAthletesOf(team)) {
+                    <li class="overview-athlete-item">
+                        <img class="overview-athlete-image" src="http://placekitten.com/100/100" alt=""/>@teamMember.name
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 }
