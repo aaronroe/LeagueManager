@@ -35,7 +35,7 @@ lmApp.controller('OverviewCtrl', function($scope, $window) {
         header:{
           left: 'title',
           center: '',
-          right: 'today prev,next'
+          right: 'prev,next'
         },
         dayRender: $scope.highlightCurrentWeek
       }
