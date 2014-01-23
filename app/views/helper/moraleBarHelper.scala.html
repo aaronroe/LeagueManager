@@ -1,0 +1,13 @@
+@(morale: Long)
+
+<div class="progress overview-athlete-morale">
+    @if(morale < 25) {
+        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@morale" aria-valuemin="0" aria-valuemax="100" style="width: @morale%">
+    } else {
+        @if(morale < 50) {
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@morale" aria-valuemin="0" aria-valuemax="100" style="width: @morale%">
+        } else {
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@morale" aria-valuemin="0" aria-valuemax="100" style="width: @morale%">
+        }
+    }
+</div>
