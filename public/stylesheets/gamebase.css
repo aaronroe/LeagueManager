@@ -11,6 +11,13 @@ html * {
 }
 
 /**
+ * General tools
+ */
+.list-inline-block {
+    display: inline-block;
+}
+
+/**
  * Image styles
  */
 .logo-small {
@@ -152,5 +159,10 @@ thead {
 }
 
 .overview-athlete-image {
+    width: 150px;
     padding: 0 20px;
+}
+
+.overview-athlete-name {
+    font-weight: bold;
 }

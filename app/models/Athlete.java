@@ -40,6 +40,11 @@ public class Athlete extends Model {
     public SoloQueueRating soloQueueRating;
 
     /**
+     * The morale of the player.
+     */
+    public double morale;
+
+    /**
      * The champion affinities the athlete has.
      */
     @ManyToMany
@@ -106,6 +111,9 @@ public class Athlete extends Model {
 
         // init special attributes for the player.
         this.initRandomSpecialAttributes();
+
+        Random random = new Random(System.currentTimeMillis());
+        this.morale = random.nextDouble() * 99;
     }
 
     /**
@@ -270,6 +278,14 @@ public class Athlete extends Model {
         });
 
         return this.laneAffinities.subList(0, numTop);
+    }
+
+    /**
+     * Gets a rounded version of the morale.
+     * @return The rounded morale.
+     */
+    public Long getRoundedMorale() {
+        return Math.round(this.morale);
     }
 
 }

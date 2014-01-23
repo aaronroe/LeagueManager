@@ -8,6 +8,7 @@ create table athlete (
   team_id                   bigint,
   which_game_id             bigint,
   solo_queue_rating         integer,
+  morale                    double,
   name                      varchar(255),
   base_reflexes             double,
   base_concentration        double,
