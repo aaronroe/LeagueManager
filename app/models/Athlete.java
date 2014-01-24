@@ -50,6 +50,11 @@ public class Athlete extends Model {
     public double morale;
 
     /**
+     * The salary that the player requires.
+     */
+    public int salary;
+
+    /**
      * The champion affinities the athlete has.
      */
     @ManyToMany
@@ -122,6 +127,12 @@ public class Athlete extends Model {
 
         // init portrait to hotshot's lol.
         this.portrait = "hotshotgg.png";
+
+        // init salary with simple formula. Note that it doesnt check champion proficiencies.
+        this.salary = (int) Math.round(this.baseReflexes + this.baseConcentration + this.baseHandEyeCoordination + this.basePerception +
+                this.baseIntelligence + this.baseWits + this.baseResolution +
+                this.potential + this.luck + this.experience +
+                random.nextDouble() * 100); // randomness for salary
     }
 
     /**
@@ -290,10 +301,18 @@ public class Athlete extends Model {
 
     /**
      * Gets a rounded version of the morale.
-     * @return The rounded morale.
+     * @return The rounded athlete morale.
      */
     public Long getRoundedMorale() {
         return Math.round(this.morale);
+    }
+
+    /**
+     * Gets Athlete salary.
+     * @return The athlete's salary.
+     */
+    public int getSalary() {
+        return this.salary;
     }
 
 }

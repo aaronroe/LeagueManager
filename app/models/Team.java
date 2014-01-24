@@ -83,4 +83,20 @@ public class Team extends Model {
         return team;
     }
 
+    /**
+     * Gets the compound salary of the team.
+     * @return The compound salary of the team.
+     */
+    public int getTotalSalary() {
+        int totalSalary = 0;
+
+        List<Athlete> athleteList = Athlete.findAthletesOf(this);
+
+        for (Athlete athlete : athleteList) {
+            totalSalary += athlete.getSalary();
+        }
+
+        return totalSalary;
+    }
+
 }

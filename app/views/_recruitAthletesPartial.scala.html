@@ -14,8 +14,9 @@
         <td></td>
         <td>Player Name</td>
         <td>Solo-Queue Rating</td>
-        <td>Best Champions</td>
         <td>Lane</td>
+        <td>Best Champions</td>
+        <td>Expected Salary</td>
     </tr>
     </thead>
     <tbody>
@@ -30,12 +31,15 @@
             <img class="division-small" ng-src="{{athlete.division_image}}" /> {{athlete.division}}
         </td>
         <td>
+            {{athlete.lane}}
+        </td>
+        <td>
             <span ng-repeat="topChampAff in athlete.champion_affinities">
                 <img class="champion" ng-src="{{topChampAff.image}}" /> <span class="label label-primary">{{topChampAff.strength}}</span>
             </span>
         </td>
         <td>
-            {{athlete.lane}}
+            ${{athlete.salary}}/week
         </td>
     </tr>
     </tbody>
