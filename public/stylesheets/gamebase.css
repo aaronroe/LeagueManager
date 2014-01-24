@@ -175,3 +175,7 @@ thead {
 .overview-athlete-morale {
     width: 50%;
 }
+
+.overview-finance-headings {
+    font-weight: bold;
+}
