@@ -29,6 +29,11 @@ public class Athlete extends Model {
     public Team team;
 
     /**
+     * The name of the portrait icon.
+     */
+    public String portrait;
+
+    /**
      * The game that this team exists in.
      */
     @ManyToOne
@@ -114,6 +119,9 @@ public class Athlete extends Model {
 
         Random random = new Random(System.currentTimeMillis());
         this.morale = random.nextDouble() * 99;
+
+        // init portrait to hotshot's lol.
+        this.portrait = "hotshotgg.png";
     }
 
     /**

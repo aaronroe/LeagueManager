@@ -6,6 +6,7 @@
 create table athlete (
   id                        bigint not null,
   team_id                   bigint,
+  portrait                  varchar(255),
   which_game_id             bigint,
   solo_queue_rating         integer,
   morale                    double,
