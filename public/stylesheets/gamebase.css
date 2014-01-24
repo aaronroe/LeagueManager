@@ -160,6 +160,7 @@ thead {
 }
 
 .overview-athlete-image {
+    vertical-align: top;
     width: 150px;
 }
 
