@@ -13,7 +13,7 @@ html * {
 /**
  * General tools
  */
-.list-inline-block {
+.inline-block {
     display: inline-block;
 }
 

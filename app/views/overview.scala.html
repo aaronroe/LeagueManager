@@ -17,7 +17,7 @@
                 @for(teamMember <- Athlete.findAthletesOf(team)) {
                     <li class="overview-athlete-item">
                         @athletePortraitHelper(teamMember.portrait)
-                        <ul class="list-unstyled list-inline-block overview-athlete-info">
+                        <ul class="list-unstyled inline-block overview-athlete-info">
                             <li class="overview-athlete-name">@teamMember.name</li>
                             <li>Morale:</li>
                             <li>@moraleBarHelper(teamMember.getRoundedMorale())</li>
@@ -33,16 +33,15 @@
             <h2>Weekly Financial Overview</h2>
             <table class="table">
                 <tr class="overview-finance-headings">
-                    <td>Profit</td>
-                    <td>Cost</td>
-                    <td>Net</td>
+                    <td>Profits</td>
+                    <td>Costs</td>
                 </tr>
                 <tr>
-                    <td class="text-success"></td>
-                    <td class="text-danger"></td>
-                    <td></td>
+                    <td class="text-success">Streaming Profits: +$300</td>
+                    <td class="text-danger">Player Salaries: -$100</td>
                 </tr>
             </table>
+            <h4 class="inline-block">Net: </h3> <span class="text-success">+$200</span>
         </div>
     </div>
 }
