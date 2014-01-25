@@ -52,7 +52,7 @@ public class JsonAPI extends Controller {
             for (ChampionAffinity affinity : recruitable.getTopChampions(3)) {
                 ObjectNode singleChampAff = Json.newObject();
                 singleChampAff.put("name", affinity.getChampionName());
-                singleChampAff.put("strength", affinity.getRoundedStrength());
+//                singleChampAff.put("strength", affinity.getRoundedStrength());
                 singleChampAff.put("image", affinity.getChampionIcon());
 
                 champAffList.add(singleChampAff);
