@@ -50,6 +50,11 @@ public class Athlete extends Model {
     public double morale;
 
     /**
+     * The popularity of the player.
+     */
+    public double popularity;
+
+    /**
      * The salary that the player requires.
      */
     public int salary;
@@ -124,6 +129,8 @@ public class Athlete extends Model {
 
         Random random = new Random(System.currentTimeMillis());
         this.morale = random.nextDouble() * 99;
+
+        this.popularity = random.nextDouble() * 99;
 
         // init portrait to hotshot's lol.
         this.portrait = "hotshotgg.png";
@@ -313,6 +320,14 @@ public class Athlete extends Model {
      */
     public int getSalary() {
         return this.salary;
+    }
+
+    /**
+     * Gets the rounded popularity of the player.
+     * @return The rounded popularity of hte player.
+     */
+    public int getRoundedPopularity() {
+        return (int) Math.round(this.popularity);
     }
 
 }

@@ -10,6 +10,7 @@ create table athlete (
   which_game_id             bigint,
   solo_queue_rating         integer,
   morale                    double,
+  popularity                double,
   salary                    integer,
   name                      varchar(255),
   base_reflexes             double,

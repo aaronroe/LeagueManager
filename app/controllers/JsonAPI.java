@@ -65,6 +65,9 @@ public class JsonAPI extends Controller {
             // salary
             singleAthlete.put("salary", recruitable.getSalary());
 
+            // popularity
+            singleAthlete.put("popularity", recruitable.getRoundedPopularity());
+
             resultList.add(singleAthlete);
         }
 
