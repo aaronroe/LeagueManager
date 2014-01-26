@@ -8,6 +8,14 @@
         '_showErrors -> false
 ) { (id, name, value, args) =>
 
+<span>Filter By:</span>
+<span>Lane: </span><select ng-model="selectedLaneFilter">
+    <option>Top</option>
+    <option>Middle</option>
+    <option>Bottom</option>
+    <option>Jungle</option>
+</select>
+
 <table class="table roster-init">
     <thead>
     <tr>
