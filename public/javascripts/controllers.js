@@ -62,6 +62,53 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
     }
     $scope.pages = [];
 
+    // table sorting
+    $scope.athleteSortIndex = "name";
+    $scope.reverse = true;
+    $scope.sortAthletesBy = function(key) {
+        $scope.recruitableAthletes.sort(function(a,b) {
+            if (a[key] > b[key]) {
+                if ($scope.reverse) {
+                    return 1;
+                }
+                else {
+                    return -1;
+                }
+            }
+            else if (a[key] < b[key]) {
+                if ($scope.reverse) {
+                    return -1;
+                }
+                else {
+                    return 1;
+                }
+            }
+            else {
+                if (a.name > b.name) {
+                    return 1;
+                }
+                else {
+
+                }
+                return 0;
+            }
+        });
+        $scope.selectedColumn = key;
+        $scope.reverse = !$scope.reverse;
+    }
+    $scope.isSelectedColumn = function(key) {
+        if(key == $scope.selectedColumn) {
+            if ($scope.reverse) {
+                return "glyphicon-arrow-up"
+            }
+            else {
+                return "glyphicon-arrow-down"
+            }
+        }
+        return "";
+    }
+    $scope.selectedColumn = "";
+
     // pagination functions
     $scope.showNextPage = function() {
         if($scope.currentPage + 1 < $scope.numPages()) {

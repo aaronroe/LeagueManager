@@ -12,12 +12,12 @@
     <thead>
     <tr>
         <td></td>
-        <td>Player Name</td>
-        <td>Solo-Queue Rating</td>
-        <td>Lane</td>
+        <td class="table-sortable" ng-click="sortAthletesBy('name')">Player Name <i ng-class="isSelectedColumn('name')" class="glyphicon"></i></td>
+        <td class="table-sortable" ng-click="sortAthletesBy('division')">Solo-Queue Rating <i ng-class="isSelectedColumn('division')" class="glyphicon"></td>
+        <td class="table-sortable" ng-click="sortAthletesBy('lane')">Lane <i ng-class="isSelectedColumn('lane')" class="glyphicon"></td>
         <td>Best Champions</td>
-        <td>Expected Salary</td>
-        <td>Popularity</td>
+        <td class="table-sortable" ng-click="sortAthletesBy('salary')">Expected Salary <i ng-class="isSelectedColumn('salary')" class="glyphicon"></td>
+        <td class="table-sortable" ng-click="sortAthletesBy('popularity')">Popularity <i ng-class="isSelectedColumn('popularity')" class="glyphicon"></td>
     </tr>
     </thead>
     <tbody>

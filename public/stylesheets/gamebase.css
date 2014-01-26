@@ -135,6 +135,10 @@ thead {
     font-weight: bold;
 }
 
+.table-sortable {
+    cursor: pointer;
+}
+
 /**
  * Calendar Styles
  */
