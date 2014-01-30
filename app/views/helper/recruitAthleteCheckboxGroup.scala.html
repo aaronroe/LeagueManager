@@ -34,13 +34,13 @@
         @for(athlete <- options) {
             <tr>
                 <td>
-                    <input type="checkbox" id="@(id)_@athlete.id" name="@{name + "[]"}" value="@athlete.id" @(if(values.contains(athlete.id)) "checked" else "") @toHtmlArgs(htmlArgs)>
+                    <input type="checkbox" id="@(id)_@athlete.getId()" name="@{name + "[]"}" value="@athlete.getId()" @(if(values.contains(athlete.getId())) "checked" else "") @toHtmlArgs(htmlArgs)>
                 </td>
                 <td>
                     @athlete.name
                 </td>
                 <td>
-                    @divisionImageHelper(athlete.soloQueueRating.getImageName(), "small") @athlete.soloQueueRating
+                    @divisionImageHelper(athlete.getSoloQueueRating().getImageName(), "small") @athlete.getSoloQueueRating()
                 </td>
                 <td>
                     @for(champion <- athlete.getTopChampions(3)) {

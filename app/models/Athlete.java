@@ -20,44 +20,68 @@ public class Athlete extends Model {
      * Primary db key for player.
      */
     @Id
-    public Long id;
+    private Long id;
+
+    /**
+     * Gets the id of the athlete.
+     * @return The id of the athlete.
+     */
+    public Long getId() {
+        return id;
+    }
 
     /**
      * The team the player belongs to.
      */
     @ManyToOne
-    public Team team;
+    private Team team;
+
+    /**
+     * Gets the name of the portrait for the player.
+     * @return The name of the portrait for the player.
+     */
+    public String getPortrait() {
+        return portrait;
+    }
 
     /**
      * The name of the portrait icon.
      */
-    public String portrait;
+    private String portrait;
 
     /**
      * The game that this team exists in.
      */
     @ManyToOne
-    public Game whichGame;
+    private Game whichGame;
+
+    /**
+     * Gets the athlete's solo queue rating.
+     * @return The athlete's solo queue rating.
+     */
+    public SoloQueueRating getSoloQueueRating() {
+        return soloQueueRating;
+    }
 
     /**
      * The solo-queue rating that the player has.
      */
-    public SoloQueueRating soloQueueRating;
+    private SoloQueueRating soloQueueRating;
 
     /**
      * The morale of the player.
      */
-    public double morale;
+    private double morale;
 
     /**
      * The popularity of the player.
      */
-    public double popularity;
+    private double popularity;
 
     /**
      * The salary that the player requires.
      */
-    public int salary;
+    private int salary;
 
     /**
      * The champion affinities the athlete has.
@@ -77,30 +101,30 @@ public class Athlete extends Model {
     public String name;
 
     // begin base attributes
-    public double baseReflexes;
+    private double baseReflexes;
 
-    public double baseConcentration;
+    private double baseConcentration;
 
-    public double baseHandEyeCoordination;
+    private double baseHandEyeCoordination;
 
-    public double basePerception;
+    private double basePerception;
 
-    public double baseIntelligence;
+    private double baseIntelligence;
 
-    public double baseWits;
+    private double baseWits;
 
-    public double baseResolution;
+    private double baseResolution;
     // end base attributes
 
     // being special attributes
     /**
      * How high an athlete can scale up (0-1)
      */
-    double potential;
+    private double potential;
 
-    double experience;
+    private double experience;
 
-    double luck;
+    private double luck;
     // end special attributes
 
     /**

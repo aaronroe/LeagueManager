@@ -16,7 +16,7 @@
             <ul class="list-unstyled list-inline">
                 @for(teamMember <- Athlete.findAthletesOf(team)) {
                     <li class="overview-athlete-item">
-                        @athletePortraitHelper(teamMember.portrait)
+                        @athletePortraitHelper(teamMember.getPortrait())
                         <ul class="list-unstyled inline-block overview-athlete-info">
                             <li class="overview-athlete-name">@teamMember.name</li>
                             <li>Morale:</li>

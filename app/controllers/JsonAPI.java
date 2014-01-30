@@ -38,14 +38,14 @@ public class JsonAPI extends Controller {
             ObjectNode singleAthlete = Json.newObject();
 
             // id
-            singleAthlete.put("id", recruitable.id);
+            singleAthlete.put("id", recruitable.getId());
 
             // name
             singleAthlete.put("name", recruitable.name);
 
             // solo queue ranking
-            singleAthlete.put("division", recruitable.soloQueueRating.toString());
-            singleAthlete.put("division_image", recruitable.soloQueueRating.getImageName());
+            singleAthlete.put("division", recruitable.getSoloQueueRating().toString());
+            singleAthlete.put("division_image", recruitable.getSoloQueueRating().getImageName());
 
             // create the list of top champ affinities.
             ArrayNode champAffList = Json.newObject().arrayNode();
