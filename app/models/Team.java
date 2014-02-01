@@ -17,23 +17,55 @@ public class Team extends Model {
      * Primary db key for team.
      */
     @Id
-    public Long id;
+    private Long id;
 
     /**
      * The game that this team exists in.
      */
     @ManyToOne
-    public Game whichGame;
+    private Game whichGame;
 
     /**
      * The name of the team.
      */
-    public String name;
+    private String name;
+
+    /**
+     * Gets the name of the logo corresponding to this team.
+     * @return The name of the logo corresponding to this team.
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * Gets the name of the team.
+     * @return The name of the team.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Gets the game that this team belongs to.
+     * @return The game this team belongs to.
+     */
+    public Game getWhichGame() {
+        return whichGame;
+    }
+
+    /**
+     * Gets the database id of the team.
+     * @return The database id of the team.
+     */
+    public Long getId() {
+        return id;
+    }
 
     /**
      * The name of the logo icon.
      */
-    public String logo;
+    private String logo;
 
     /**
      * Finder for team.

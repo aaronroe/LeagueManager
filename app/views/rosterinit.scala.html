@@ -2,7 +2,7 @@
 
 @import helper._
 
-@gamebase("Roster Creation", localTeam.name, localTeam.logo, localGame.getMoney(), 0, 0) {
+@gamebase("Roster Creation", localTeam.getName(), localTeam.getLogo(), localGame.getMoney(), 0, 0) {
 <div class="panel-small" ng-controller="RosterInitCtrl">
     <h1>Recruit Solo-Queue Players</h1>
     @helper.form(routes.Application.doRosterInit) {
