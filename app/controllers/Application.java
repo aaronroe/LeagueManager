@@ -53,10 +53,10 @@ public class Application extends Controller {
         }
         else {
             Game localGame = Game.findGameOf(localUser);
-            if (!localGame.isTeamInit) {
+            if (!localGame.isTeamInit()) {
                 return redirect(routes.Application.teamInit());
             }
-            else if (!localGame.isRosterInit) {
+            else if (!localGame.isRosterInit()) {
                 return redirect(routes.Application.rosterInit());
             }
             else {
@@ -84,13 +84,13 @@ public class Application extends Controller {
 	public static Result overview() {
 		final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || !localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 
         Team team = Team.findTeamOf(localUser);
 
-        return ok(overview.render(team, localGame, localGame.date));
+        return ok(overview.render(team, localGame, localGame.getDate()));
 	}
 
     /**
@@ -101,7 +101,7 @@ public class Application extends Controller {
     public static Result schedule() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || !localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 
@@ -118,7 +118,7 @@ public class Application extends Controller {
     public static Result roster() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || !localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 
@@ -135,7 +135,7 @@ public class Application extends Controller {
     public static Result rosterRecruit() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || !localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 
@@ -152,7 +152,7 @@ public class Application extends Controller {
     public static Result finances() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || !localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 
@@ -206,7 +206,7 @@ public class Application extends Controller {
     public static Result teamInit() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit) {
+        if (!localGame.isTeamInit()) {
             return ok(teaminit.render(form(InitialTeam.class)));
         }
 
@@ -223,7 +223,7 @@ public class Application extends Controller {
     public static Result doTeamInit() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (localGame.isTeamInit) {
+        if (localGame.isTeamInit()) {
             return redirect(routes.Application.index());
         }
 
@@ -255,7 +255,7 @@ public class Application extends Controller {
     public static Result rosterInit() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 
@@ -272,7 +272,7 @@ public class Application extends Controller {
     public static Result doRosterInit() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 
@@ -336,7 +336,7 @@ public class Application extends Controller {
     public static Result doAdvanceWeek() {
         final User localUser = getLocalUser(session());
         Game localGame = Game.findGameOf(localUser);
-        if (!localGame.isTeamInit || !localGame.isRosterInit) {
+        if (!localGame.isTeamInit() || !localGame.isRosterInit()) {
             return redirect(routes.Application.index());
         }
 

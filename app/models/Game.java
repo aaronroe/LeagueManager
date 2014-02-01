@@ -18,39 +18,95 @@ public class Game extends Model {
      * Things get more complex when users can have more than one team.
      */
     @OneToOne
-    public User owner;
+    private User owner;
 
     /**
      * The user-controlled team in this game.
      */
     @OneToOne
-    public Team userTeam;
+    private Team userTeam;
 
     /**
      * Primary db key for game.
      */
     @Id
-    public Long id;
+    private Long id;
 
     /**
      * Whether or not the user's team has been init.
      */
-    public boolean isTeamInit;
+    private boolean isTeamInit;
 
     /**
      * Whether or not the user's roster has been init.
      */
-    public boolean isRosterInit;
+    private boolean isRosterInit;
+
+    /**
+     * Gets the amount of money the player owns in the game.
+     * @return The amount of money the player owns in the game, in integer form.
+     */
+    public int getMoney() {
+        return money;
+    }
+
+    /**
+     * Gets the unix timestamp of the current date ingame.
+     * @return The unix timestamp of the current date ingame, in long form.
+     */
+    public long getDate() {
+        return date;
+    }
+
+    /**
+     * Gets whether the game's initial roster has been formed.
+     * @return Whether the game's initial roster has been formed.
+     */
+    public boolean isRosterInit() {
+        return isRosterInit;
+    }
+
+    /**
+     * Gets the database id of the game.
+     * @return The database id of the game.
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Gets whether the game's initial team has been created.
+     * @return Whether the game's initial team has been created.
+     */
+    public boolean isTeamInit() {
+        return isTeamInit;
+    }
+
+    /**
+     * Gets the team of the user.
+     * @return The team of the user.
+     */
+    public Team getUserTeam() {
+        return userTeam;
+    }
+
+    /**
+     * Gets the owner of this game.
+     * @return The account associated with this game.
+     */
+    public User getOwner() {
+        return owner;
+    }
 
     /**
      * The amount of money that the user has in the game.
      */
-    public int money;
+    private int money;
 
     /**
      * The current date in the game.
      */
-    public long date;
+    private long date;
 
     /**
      * Finder for team.

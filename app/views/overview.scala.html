@@ -2,7 +2,7 @@
 
 @import helper._
 
-@gamebase("Overview", team.name, team.logo, game.money, 4, 0) {
+@gamebase("Overview", team.name, team.logo, game.getMoney(), 4, 0) {
     <div class="panel-large">
         <div ng-init="initializeDate(@date)" ng-controller="OverviewCtrl" class="overview-element">
             <div class="overview-ctrl">

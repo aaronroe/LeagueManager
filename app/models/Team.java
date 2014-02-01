@@ -58,7 +58,7 @@ public class Team extends Model {
      * @return The game belonging to user
      */
     public static Team findTeamOf(User user) {
-        return Game.find.where().eq("owner", user).findUnique().userTeam;
+        return Game.find.where().eq("owner", user).findUnique().getUserTeam();
     }
 
     /**
