@@ -16,7 +16,7 @@ public class ChampionAffinity extends Model {
      * The db key for a champion affinity.
      */
     @Id
-    public Long id;
+    private Long id;
 
     /**
      * The name of the champion that the affinity is for.

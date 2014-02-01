@@ -15,7 +15,7 @@ public class LaneAffinity extends Model {
      * The db key for a lane affinity.
      */
     @Id
-    public Long id;
+    private Long id;
 
     /**
      * The name of the lane.
