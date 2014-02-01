@@ -95,6 +95,7 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
         });
         $scope.selectedColumn = key;
         $scope.reverse = !$scope.reverse;
+        $scope.showPage(0);
     }
     $scope.isSelectedColumn = function(key) {
         if(key == $scope.selectedColumn) {
