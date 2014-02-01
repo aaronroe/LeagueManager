@@ -41,7 +41,7 @@ public class JsonAPI extends Controller {
             singleAthlete.put("id", recruitable.getId());
 
             // name
-            singleAthlete.put("name", recruitable.name);
+            singleAthlete.put("name", recruitable.getName());
 
             // solo queue ranking
             singleAthlete.put("division", recruitable.getSoloQueueRating().toString());

@@ -87,18 +87,26 @@ public class Athlete extends Model {
      * The champion affinities the athlete has.
      */
     @ManyToMany
-    public List<ChampionAffinity> championAffinities = new ArrayList<ChampionAffinity>();
+    private List<ChampionAffinity> championAffinities = new ArrayList<ChampionAffinity>();
 
     /**
      * The affinities the athlete has with the lane.
      */
     @ManyToMany
-    public List<LaneAffinity> laneAffinities = new ArrayList<LaneAffinity>();
+    private List<LaneAffinity> laneAffinities = new ArrayList<LaneAffinity>();
+
+    /**
+     * Gets the name of the player.
+     * @return The name of the player, in text.
+     */
+    public String getName() {
+        return name;
+    }
 
     /**
      * The name of the player.
      */
-    public String name;
+    private String name;
 
     // begin base attributes
     private double baseReflexes;

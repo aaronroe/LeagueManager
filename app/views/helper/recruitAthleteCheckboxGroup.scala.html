@@ -37,7 +37,7 @@
                     <input type="checkbox" id="@(id)_@athlete.getId()" name="@{name + "[]"}" value="@athlete.getId()" @(if(values.contains(athlete.getId())) "checked" else "") @toHtmlArgs(htmlArgs)>
                 </td>
                 <td>
-                    @athlete.name
+                    @athlete.getName()
                 </td>
                 <td>
                     @divisionImageHelper(athlete.getSoloQueueRating().getImageName(), "small") @athlete.getSoloQueueRating()
