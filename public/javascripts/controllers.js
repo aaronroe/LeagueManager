@@ -159,18 +159,6 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
 
 });
 
-// function for pagination to start from.
-lmApp.filter('startFrom', function() {
-    return function(input, start) {
-        start = +start; //parse to int
-        if (input === undefined) {
-            return start;
-        }
-        else {
-            return input.slice(start);
-        }
-    }
-});
 
 /**
  * Function that adds onto Date and compares two dates to see if they are in the same week.
