@@ -83,7 +83,7 @@
     <tbody>
         <tr class="row-highlight" ng-repeat="athlete in allRecruitableAthletes | filter:{selected: true}" ng-click="toggleAthleteSelected(athlete)" ng-class="{'athlete-selected': athlete.selected === true}">
             <td>
-                <input ng-model="athlete.selected" type="checkbox" name="@{name + "[]"}" id="@(id)_{{athlete.id}}" value="{{athlete.id}}" @toHtmlArgs(args)>
+                <input ng-model="athlete.selected" type="checkbox">
             </td>
             <td>
                 {{athlete.name}}
