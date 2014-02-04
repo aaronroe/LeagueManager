@@ -9,7 +9,9 @@
 ) { (id, name, value, args) =>
 
 <span>Filter By:</span>
-<span>Lane: </span><select ng-model="selectedLaneFilter">
+<span>Lane: </span>
+<select ng-model="selectedLaneFilter">
+    <option></option>
     <option>Top</option>
     <option>Middle</option>
     <option>Bottom</option>
@@ -29,7 +31,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-highlight" ng-repeat="athlete in recruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{hidden: !isVisible(athlete), 'athlete-selected': athlete.selected === true}">
+    <tr class="row-highlight" ng-repeat="athlete in filteredRecruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{hidden: !isVisible(athlete), 'athlete-selected': athlete.selected === true}">
         <td>
             <input ng-model="athlete.selected" type="checkbox" name="@{name + "[]"}" id="@(id)_{{athlete.id}}" value="{{athlete.id}}" @toHtmlArgs(args)>
         </td>
@@ -58,7 +60,7 @@
 </table>
 
 
-<h2 class="loading-text text-center" ng-hide="recruitableAthletes !== undefined"><i class="glyphicon glyphicon-download"></i> Loading</h2>
+<h2 class="loading-text text-center" ng-hide="filteredRecruitableAthletes !== undefined"><i class="glyphicon glyphicon-download"></i> Loading</h2>
 
 <ul class="pagination">
     <li><a href="" ng-click="showPreviousPage()" id="back">&laquo;</a></li>

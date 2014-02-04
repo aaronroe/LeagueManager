@@ -53,22 +53,26 @@ lmApp.controller('OverviewCtrl', function($scope, $window) {
 });
 
 lmApp.controller('RosterInitCtrl', function($scope, $http) {
-
     // pagination data
     $scope.currentPage = 0;
     $scope.resultsPerPage = 10;
-    $scope.numPages = function() {
-        return Math.ceil($scope.recruitableAthletes.length / $scope.resultsPerPage);
-    }
     $scope.pages = [];
+    // function that returns the number of pages.
+    function numPages() {
+        if ($scope.filteredRecruitableAthletes !== undefined) {
+            return Math.ceil($scope.filteredRecruitableAthletes.length / $scope.resultsPerPage);
+        }
+        else {
+            return 0;
+        }
+    }
 
     // table sorting
-    $scope.athleteSortIndex = "name";
-    $scope.reverse = true;
+    var reverseSorting = true;
     $scope.sortAthletesBy = function(key) {
-        $scope.recruitableAthletes.sort(function(a,b) {
+        $scope.filteredRecruitableAthletes.sort(function(a,b) {
             if (a[key] > b[key]) {
-                if ($scope.reverse) {
+                if (reverseSorting) {
                     return 1;
                 }
                 else {
@@ -76,7 +80,7 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
                 }
             }
             else if (a[key] < b[key]) {
-                if ($scope.reverse) {
+                if (reverseSorting) {
                     return -1;
                 }
                 else {
@@ -94,12 +98,12 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
             }
         });
         $scope.selectedColumn = key;
-        $scope.reverse = !$scope.reverse;
+        reverseSorting = !reverseSorting;
         $scope.showPage(0);
     }
     $scope.isSelectedColumn = function(key) {
         if(key == $scope.selectedColumn) {
-            if ($scope.reverse) {
+            if (reverseSorting) {
                 return "glyphicon-arrow-up"
             }
             else {
@@ -110,9 +114,32 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
     }
     $scope.selectedColumn = "";
 
+    // filtering
+    $scope.$watch('selectedLaneFilter', function(newValue, oldValue) {
+        filterAthletesByLane(newValue);
+    });
+    // function that returns a list of athletes by their lane.
+    function filterAthletesByLane(lane) {
+        // if nothing is selected
+        if (lane === "") {
+            $scope.filteredRecruitableAthletes = $scope.allRecruitableAthletes;
+        }
+        else if ($scope.allRecruitableAthletes != null) {
+            var filteredList = [];
+            for (var i = 0; i < $scope.allRecruitableAthletes.length; i++) {
+                if ($scope.allRecruitableAthletes[i].lane === lane) {
+                    filteredList.push($scope.allRecruitableAthletes[i]);
+                }
+            }
+            $scope.filteredRecruitableAthletes = filteredList;
+        }
+
+        updatePageCount();
+    };
+
     // pagination functions
     $scope.showNextPage = function() {
-        if($scope.currentPage + 1 < $scope.numPages()) {
+        if($scope.currentPage + 1 < numPages()) {
             $scope.currentPage++;
         }
     }
@@ -124,11 +151,19 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
     $scope.showPage = function(page) {
         $scope.currentPage = page;
     }
+    // function that updates the page count.
+    function updatePageCount() {
+        var newPages = [];
+        for (var i = 0; i < numPages(); i++) {
+            newPages.push(i);
+        }
+        $scope.pages = newPages;
+    }
 
     // function for pagination that preserves checkboxes across pages.
     // not the most elegant solution, but it works.
     $scope.isVisible = function(athlete) {
-        var index = $scope.recruitableAthletes.indexOf(athlete);
+        var index = $scope.filteredRecruitableAthletes.indexOf(athlete);
         if (index > $scope.currentPage * $scope.resultsPerPage &&
             index < ($scope.currentPage + 1) * $scope.resultsPerPage) {
             return true;
@@ -150,11 +185,10 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
         for (var i = 0; i < result.data.length; i++) {
             result.data[i].selected = false;
         }
-        $scope.recruitableAthletes = result.data;
+        $scope.allRecruitableAthletes = result.data;
+        $scope.filteredRecruitableAthletes = result.data;
 
-        for (var i = 0; i < $scope.numPages(); i++) {
-            $scope.pages.push(i);
-        }
+        updatePageCount();
     });
 
 });
