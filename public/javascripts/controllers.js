@@ -116,10 +116,10 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
 
     // filtering
     $scope.$watch('selectedLaneFilter', function(newValue, oldValue) {
-        filterAthletesByLane(newValue);
+        $scope.filterAthletesByLane(newValue);
     });
     // function that returns a list of athletes by their lane.
-    function filterAthletesByLane(lane) {
+    $scope.filterAthletesByLane = function(lane) {
         // if nothing is selected
         if (lane === "") {
             $scope.filteredRecruitableAthletes = $scope.allRecruitableAthletes;
@@ -134,7 +134,11 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
             $scope.filteredRecruitableAthletes = filteredList;
         }
 
+        // we need to update page count after shrinking our model size.
         updatePageCount();
+
+        // we need to reset any notions of sorted data as well.
+        $scope.selectedColumn = "";
     };
 
     // pagination functions

@@ -9,13 +9,12 @@
 ) { (id, name, value, args) =>
 
 <span>Filter By:</span>
-<span>Lane: </span>
 <select ng-model="selectedLaneFilter">
-    <option></option>
-    <option>Top</option>
-    <option>Middle</option>
-    <option>Bottom</option>
-    <option>Jungle</option>
+    <option value="" selected>Lane</option>
+    <option value="Top">Top</option>
+    <option value="Middle">Middle</option>
+    <option value="Bottom">Bottom</option>
+    <option value="Jungle">Jungle</option>
 </select>
 
 <table class="table roster-init">
