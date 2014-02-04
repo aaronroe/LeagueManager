@@ -53,6 +53,9 @@ lmApp.controller('OverviewCtrl', function($scope, $window) {
 });
 
 lmApp.controller('RosterInitCtrl', function($scope, $http) {
+    // number of athletes selected.
+    $scope.numSelected = 0;
+
     // pagination data
     $scope.currentPage = 0;
     $scope.resultsPerPage = 10;
@@ -180,8 +183,10 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
     $scope.toggleAthleteSelected = function(athlete) {
         if (athlete.selected == false) {
             athlete.selected = true;
+            $scope.numSelected++;
         } else {
             athlete.selected = false;
+            $scope.numSelected--;
         }
     };
 
