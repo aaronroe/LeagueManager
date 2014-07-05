@@ -119,7 +119,7 @@ public class Team extends Model {
      * Gets the compound salary of the team.
      * @return The compound salary of the team.
      */
-    public int getTotalSalary() {
+    public int getTotalPlayerSalary() {
         int totalSalary = 0;
 
         List<Athlete> athleteList = Athlete.findAthletesOf(this);
@@ -129,6 +129,14 @@ public class Team extends Model {
         }
 
         return totalSalary;
+    }
+
+    public int getStreamingProfits() {
+        return 400;
+    }
+
+    public int getNetProfit() {
+        return getStreamingProfits() - getTotalPlayerSalary();
     }
 
 }

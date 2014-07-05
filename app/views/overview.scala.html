@@ -37,11 +37,11 @@
                     <td>Costs</td>
                 </tr>
                 <tr>
-                    <td class="text-success">Streaming Profits: +$300</td>
-                    <td class="text-danger">Player Salaries: -$@team.getTotalSalary()</td>
+                    <td class="text-success">Streaming Profits: +$@team.getStreamingProfits()</td>
+                    <td class="text-danger">Player Salaries: -$@team.getTotalPlayerSalary()</td>
                 </tr>
             </table>
-            <h4 class="inline-block">Net: </h3> <span class="text-success"></span>
+            <h4 class="inline-block">Net: </h3><span class="@if(team.getNetProfit() > 0) { text-success } else { text-danger }">$@team.getNetProfit()</span>
         </div>
     </div>
 }

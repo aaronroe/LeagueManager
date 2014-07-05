@@ -51,6 +51,22 @@ public class Game extends Model {
     }
 
     /**
+     * Sets money the money the player has in the game. Does not mutate game state on db.
+     * @param money Amount of money for the player.
+     */
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    /**
+     * Increments player's game money by an amount. Does not mutate game state on db.
+     * @param moneyIncrement Amount of money to add to the player, can be positive or negative.
+     */
+    public void incrementMoney(int moneyIncrement) {
+        this.money += moneyIncrement;
+    }
+
+    /**
      * Gets the unix timestamp of the current date ingame.
      * @return The unix timestamp of the current date ingame, in long form.
      */
@@ -196,6 +212,9 @@ public class Game extends Model {
         calendarDate.add(Calendar.DATE, 7);
 
         this.date = calendarDate.getTimeInMillis();
+
+        this.incrementMoney(this.getUserTeam().getNetProfit());
+
         this.save();
     }
 
