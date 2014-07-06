@@ -46,7 +46,7 @@ public class Game extends Model {
      * Gets the amount of money the player owns in the game.
      * @return The amount of money the player owns in the game, in integer form.
      */
-    public int getMoney() {
+    public long getMoney() {
         return money;
     }
 
@@ -117,7 +117,7 @@ public class Game extends Model {
     /**
      * The amount of money that the user has in the game.
      */
-    private int money;
+    private long money;
 
     /**
      * The current date in the game.
