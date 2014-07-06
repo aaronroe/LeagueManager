@@ -43,8 +43,8 @@
                     @divisionImageHelper(athlete.getSoloQueueRating().getImageName(), "small") @athlete.getSoloQueueRating()
                 </td>
                 <td>
-                    @for(champion <- athlete.getTopChampions(3)) {
-                        @championIconHelper(champion.getChampionName()) <span class="label label-primary">@champion.getRoundedStrength()</span>
+                    @for(championAffinity <- athlete.getTopChampions(3)) {
+                        @championIconHelper(championAffinity.getChampionName()) <span class="label label-primary">@championAffinity.getRoundedStrength()</span>
                     }
                 </td>
                 <td>

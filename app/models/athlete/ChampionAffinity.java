@@ -1,6 +1,7 @@
 package models.athlete;
 
 import controllers.Assets;
+import models.game.Champion;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ public class ChampionAffinity extends Model {
 
     /**
      * The name of the champion that the affinity is for.
+     * This is not a Champion object because we do not want to persist that in the database.
      */
     private String championName;
 
@@ -29,8 +31,8 @@ public class ChampionAffinity extends Model {
     private Double strength;
 
     /**
-     * Gets the champion name
-     * @return The name of the champion.
+     * Gets the name of the champion that the affinity is for.
+     * @return the name of the champion.
      */
     public String getChampionName() {
         return championName;
@@ -71,7 +73,7 @@ public class ChampionAffinity extends Model {
 
     /**
      * Constructor for champion affinity.
-     * @param championName The name of the champion.
+     * @param championName The name of the champion that the affinity is for.
      * @param strength The strength of the affinity.
      */
     public ChampionAffinity(String championName, Double strength) {
@@ -81,7 +83,7 @@ public class ChampionAffinity extends Model {
 
     /**
      * Static method for encapsulating construction of a champion affinity.
-     * @param championName The name of the champion.
+     * @param championName The name of the champion the affinity is for.
      * @param strength The strength of the affinity.
      * @return A constructed champion affinity.
      */

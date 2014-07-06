@@ -3,6 +3,7 @@ package models;
 import models.athlete.ChampionAffinity;
 import models.athlete.LaneAffinity;
 import models.athlete.SoloQueueRating;
+import models.game.Champion;
 import models.game.ChampionHelper;
 import models.game.LaneHelper;
 import play.db.ebean.Model;
@@ -267,6 +268,8 @@ public class Athlete extends Model {
      * Creates a new athlete.
      * @param name The name of the athlete.
      * @param teamId The id of the team that this athlete is a part of.
+     * @param game The game that the athlete resides in.
+     * @param soloQueueRating The solo queue rating of the player.
      * @return The new athlete.
      */
     public static Athlete create(String name, Long teamId, Game game, SoloQueueRating soloQueueRating) {
@@ -296,7 +299,8 @@ public class Athlete extends Model {
         Random random = new Random(System.currentTimeMillis());
 
         // init random champ affinities.
-        for (String championName : ChampionHelper.singleton.getAllChampions()) {
+        for (Champion champion: ChampionHelper.singleton.getAllChampions()) {
+            final String championName = champion.getName();
             this.championAffinities.add(ChampionAffinity.create(championName, random.nextDouble() * 99 * random.nextDouble()));
         }
 
