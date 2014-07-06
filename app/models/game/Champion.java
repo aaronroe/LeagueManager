@@ -1,9 +1,19 @@
 package models.game;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Represents a champion instance in league of legends.
  */
 public class Champion {
+
+    /**
+     * The identifying name of the champion.
+     */
+    @JsonProperty("name")
+    private String name;
+
+    public Champion() {}
 
     /**
      * Constructor for a champion instance.
@@ -12,11 +22,6 @@ public class Champion {
     public Champion(String name) {
         this.name = name;
     }
-
-    /**
-     * The identifying name of the champion.
-     */
-    private String name;
 
     /**
      * Checks whether or not the champion has the same identifying name.
@@ -46,5 +51,9 @@ public class Champion {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

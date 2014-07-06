@@ -1,5 +1,7 @@
 package models.game;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import play.Logger;
 import play.api.Play;
 
@@ -17,6 +19,8 @@ import java.util.List;
  */
 public class ChampionHelper {
 
+    private static final String CHAMPIONS_RESOURCE_PATH = "app/resources/Champions.json";
+
     /**
      * Singleton instance to use for champion helper.
      */
@@ -33,7 +37,7 @@ public class ChampionHelper {
     private ChampionHelper() {
         champions = new ArrayList<Champion>();
 
-        final File championsFile = Play.getFile("app/resources/Champions", Play.current());
+        final File championsFile = Play.getFile(CHAMPIONS_RESOURCE_PATH, Play.current());
 
         FileReader championsFileReader = null;
         try {
@@ -50,9 +54,18 @@ public class ChampionHelper {
         final BufferedReader championsBufferedReader = new BufferedReader(championsFileReader);
 
         try {
-            String championName;
-            while ((championName = championsBufferedReader.readLine()) != null) {
-                final Champion champion = new Champion(championName);
+            final StringBuilder sb = new StringBuilder();
+            String championsLine;
+            while ((championsLine = championsBufferedReader.readLine()) != null) {
+                sb.append(championsLine);
+            }
+
+            final String championJSON = sb.toString();
+            final ObjectMapper mapper = new ObjectMapper();
+
+            final List<Champion> parsedChampions = mapper.readValue(championJSON, new TypeReference<List<Champion>>() {});
+
+            for (Champion champion : parsedChampions) {
                 champions.add(champion);
             }
 
