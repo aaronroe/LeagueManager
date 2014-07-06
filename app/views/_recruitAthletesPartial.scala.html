@@ -30,9 +30,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-highlight" ng-repeat="athlete in filteredRecruitableAthletes" ng-click="toggleAthleteSelected(athlete)" ng-class="{hidden: !isVisible(athlete), 'athlete-selected': athlete.selected === true}">
+    <tr class="row-highlight" ng-repeat="athlete in filteredRecruitableAthletes" ng-click="toggleAthleteSelected(athlete, $event)" ng-class="{hidden: !isVisible(athlete), 'athlete-selected': athlete.selected === true}">
         <td>
-            <input ng-model="athlete.selected" type="checkbox" name="@{name + "[]"}" id="@(id)_{{athlete.id}}" value="{{athlete.id}}" @toHtmlArgs(args)>
+            <input ng-model="athlete.selected" ng-change="toggleAthleteSelected(athlete, $event)" type="checkbox" name="@{name + "[]"}" id="@(id)_{{athlete.id}}" value="{{athlete.id}}" @toHtmlArgs(args)>
         </td>
         <td>
             {{athlete.name}}

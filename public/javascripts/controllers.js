@@ -180,8 +180,15 @@ lmApp.controller('RosterInitCtrl', function($scope, $http) {
         }
     }
 
-    $scope.toggleAthleteSelected = function(athlete) {
-        if (athlete.selected == false) {
+    $scope.toggleAthleteSelected = function(athlete, event) {
+        if (!event) {
+            return; // when we click a checkbox, the event variable is mysteriously undefined for the row.
+        }
+        if (event.target.tagName === 'INPUT') {
+            athlete.selected = !athlete.selected;
+        }
+
+        if (athlete.selected === false) {
             athlete.selected = true;
             $scope.numSelected++;
         } else {
